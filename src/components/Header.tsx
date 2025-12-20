@@ -20,11 +20,8 @@ const Header = () => {
             <a href="#about" className="text-muted-foreground hover:text-foreground transition-colors duration-300 font-medium">
               About
             </a>
-            <Link to="/college/login" className="text-muted-foreground hover:text-foreground transition-colors duration-300 font-medium">
-              Login
-            </Link>
             <Button variant="forest" size="sm" asChild>
-              <Link to="/college/login">Sign Up</Link>
+              <Link to="/college/login">Login</Link>
             </Button>
           </nav>
 
@@ -39,11 +36,8 @@ const Header = () => {
             <a href="#about" className="text-muted-foreground hover:text-foreground transition-colors duration-300 font-medium">
               About
             </a>
-            <Link to="/college/login" className="text-muted-foreground hover:text-foreground transition-colors duration-300 font-medium">
-              Login
-            </Link>
             <Button variant="forest" size="sm" asChild>
-              <Link to="/college/login">Sign Up</Link>
+              <Link to="/college/login">Login</Link>
             </Button>
           </nav>}
       </div>

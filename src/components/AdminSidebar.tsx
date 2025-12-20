@@ -46,7 +46,7 @@ const AdminSidebar = ({ onLogout }: AdminSidebarProps) => {
           </div>
           {!collapsed && (
             <div>
-              <span className="font-display text-lg font-semibold block">GreenPath</span>
+              <span className="font-display text-lg font-semibold block">GenZ Placify</span>
               <span className="text-xs text-primary-foreground/60">Super Admin</span>
             </div>
           )}

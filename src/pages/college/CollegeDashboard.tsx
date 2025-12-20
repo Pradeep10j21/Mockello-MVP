@@ -41,44 +41,94 @@ const CollegeDashboard = () => {
     },
   ];
 
+  // Real companies with their logos
+  const featuredCompanies = [
+    {
+      name: "TCS",
+      logo: "https://logo.clearbit.com/tcs.com",
+      roles: ["Software Engineer", "System Analyst"],
+      package: "7-12 LPA",
+      status: "Hiring",
+    },
+    {
+      name: "Wipro",
+      logo: "https://logo.clearbit.com/wipro.com",
+      roles: ["Project Engineer", "Developer"],
+      package: "6-10 LPA",
+      status: "Hiring",
+    },
+    {
+      name: "Zoho",
+      logo: "https://logo.clearbit.com/zoho.com",
+      roles: ["Software Developer", "QA Engineer"],
+      package: "8-15 LPA",
+      status: "Upcoming",
+    },
+    {
+      name: "Accenture",
+      logo: "https://logo.clearbit.com/accenture.com",
+      roles: ["Associate SE", "Analyst"],
+      package: "6-9 LPA",
+      status: "Hiring",
+    },
+    {
+      name: "Infosys",
+      logo: "https://logo.clearbit.com/infosys.com",
+      roles: ["Systems Engineer", "Trainee"],
+      package: "5-8 LPA",
+      status: "Hiring",
+    },
+    {
+      name: "Cognizant",
+      logo: "https://logo.clearbit.com/cognizant.com",
+      roles: ["Programmer Analyst", "Graduate Trainee"],
+      package: "5-9 LPA",
+      status: "Upcoming",
+    },
+  ];
+
   const recentActivities = [
     {
-      company: "TechCorp Solutions",
+      company: "TCS",
+      logo: "https://logo.clearbit.com/tcs.com",
       action: "Posted new opportunity",
       role: "Software Engineer",
       time: "2 hours ago",
     },
     {
-      company: "DataFlow Inc",
+      company: "Wipro",
+      logo: "https://logo.clearbit.com/wipro.com",
       action: "Updated eligibility criteria",
-      role: "Data Analyst",
+      role: "Project Engineer",
       time: "5 hours ago",
     },
     {
-      company: "CloudNine Systems",
+      company: "Zoho",
+      logo: "https://logo.clearbit.com/zoho.com",
       action: "Scheduled campus visit",
-      role: "DevOps Engineer",
+      role: "Software Developer",
       time: "1 day ago",
     },
     {
-      company: "AI Dynamics",
+      company: "Accenture",
+      logo: "https://logo.clearbit.com/accenture.com",
       action: "Requested student list",
-      role: "ML Engineer",
+      role: "Associate SE",
       time: "2 days ago",
     },
   ];
 
   const upcomingDrives = [
-    { company: "TechCorp Solutions", date: "Dec 15, 2024", roles: 3, students: 120 },
-    { company: "DataFlow Inc", date: "Dec 18, 2024", roles: 2, students: 85 },
-    { company: "CloudNine Systems", date: "Dec 22, 2024", roles: 4, students: 200 },
+    { company: "TCS", logo: "https://logo.clearbit.com/tcs.com", date: "Dec 15, 2024", roles: 3, students: 120 },
+    { company: "Infosys", logo: "https://logo.clearbit.com/infosys.com", date: "Dec 18, 2024", roles: 2, students: 85 },
+    { company: "Wipro", logo: "https://logo.clearbit.com/wipro.com", date: "Dec 22, 2024", roles: 4, students: 200 },
   ];
 
   return (
     <div className="flex min-h-screen w-full bg-background">
       <CollegeSidebar onLogout={handleLogout} />
 
-      <main className="flex-1 p-8">
+      <main className="flex-1 p-8 overflow-auto">
         {/* Header */}
         <div className="mb-8">
           <h1 className="font-display text-3xl font-bold text-foreground mb-2">
@@ -114,6 +164,56 @@ const CollegeDashboard = () => {
           ))}
         </div>
 
+        {/* Featured Companies */}
+        <div className="mb-8">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="font-display text-xl font-semibold text-foreground">
+              Featured Companies
+            </h2>
+            <Button variant="ghost" size="sm" onClick={() => navigate("/college/companies")}>
+              View All
+              <ArrowUpRight size={14} />
+            </Button>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {featuredCompanies.map((company, index) => (
+              <div
+                key={index}
+                className="card-forest hover:shadow-medium transition-all cursor-pointer animate-fade-up"
+                style={{ animationDelay: `${index * 0.1}s` }}
+                onClick={() => navigate(`/college/company/${index + 1}`)}
+              >
+                <div className="flex items-start gap-4">
+                  <img
+                    src={company.logo}
+                    alt={company.name}
+                    className="w-14 h-14 rounded-xl object-contain bg-white p-2 shadow-sm"
+                    onError={(e) => {
+                      e.currentTarget.src = `https://ui-avatars.com/api/?name=${company.name}&background=2D5A4A&color=fff`;
+                    }}
+                  />
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between mb-1">
+                      <h3 className="font-semibold text-foreground">{company.name}</h3>
+                      <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${
+                        company.status === "Hiring" 
+                          ? "bg-sage/20 text-sage" 
+                          : "bg-accent/20 text-accent"
+                      }`}>
+                        {company.status}
+                      </span>
+                    </div>
+                    <p className="text-sm text-muted-foreground mb-2">
+                      {company.roles.join(", ")}
+                    </p>
+                    <p className="text-sm font-medium text-sage">{company.package}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Recent Activities */}
           <div className="card-forest">
@@ -133,9 +233,14 @@ const CollegeDashboard = () => {
                   key={index}
                   className="flex items-start gap-4 p-4 rounded-lg bg-muted/50 hover:bg-muted transition-colors"
                 >
-                  <div className="w-10 h-10 rounded-lg bg-sage-light flex items-center justify-center flex-shrink-0">
-                    <Building2 size={18} className="text-forest-medium" />
-                  </div>
+                  <img
+                    src={activity.logo}
+                    alt={activity.company}
+                    className="w-10 h-10 rounded-lg object-contain bg-white p-1 shadow-sm flex-shrink-0"
+                    onError={(e) => {
+                      e.currentTarget.src = `https://ui-avatars.com/api/?name=${activity.company}&background=2D5A4A&color=fff`;
+                    }}
+                  />
                   <div className="flex-1 min-w-0">
                     <p className="font-medium text-foreground truncate">
                       {activity.company}
@@ -170,8 +275,16 @@ const CollegeDashboard = () => {
                   key={index}
                   className="p-4 rounded-lg border border-border hover:border-sage transition-colors"
                 >
-                  <div className="flex items-center justify-between mb-2">
-                    <h3 className="font-medium text-foreground">{drive.company}</h3>
+                  <div className="flex items-center gap-3 mb-2">
+                    <img
+                      src={drive.logo}
+                      alt={drive.company}
+                      className="w-8 h-8 rounded-lg object-contain bg-white p-1"
+                      onError={(e) => {
+                        e.currentTarget.src = `https://ui-avatars.com/api/?name=${drive.company}&background=2D5A4A&color=fff`;
+                      }}
+                    />
+                    <h3 className="font-medium text-foreground flex-1">{drive.company}</h3>
                     <span className="text-sm text-sage font-medium">{drive.date}</span>
                   </div>
                   <div className="flex items-center gap-4 text-sm text-muted-foreground">

@@ -13,10 +13,15 @@ import CollegeDashboard from "./pages/college/CollegeDashboard";
 import CollegeProfile from "./pages/college/CollegeProfile";
 import CollegeCompanies from "./pages/college/CollegeCompanies";
 import CompanyDetail from "./pages/college/CompanyDetail";
+import CollegeAnalytics from "./pages/college/CollegeAnalytics";
 
 // Admin Module
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminDashboard from "./pages/admin/AdminDashboard";
+import AdminAnalytics from "./pages/admin/AdminAnalytics";
+import AdminColleges from "./pages/admin/AdminColleges";
+import AdminCompanies from "./pages/admin/AdminCompanies";
+import AdminStudents from "./pages/admin/AdminStudents";
 
 // Placeholder Modules
 import CompanyLogin from "./pages/company/CompanyLogin";
@@ -43,15 +48,15 @@ const App = () => (
           <Route path="/college/profile" element={<CollegeProfile />} />
           <Route path="/college/companies" element={<CollegeCompanies />} />
           <Route path="/college/company/:id" element={<CompanyDetail />} />
-          <Route path="/college/eligibility" element={<CollegeDashboard />} />
+          <Route path="/college/eligibility" element={<CollegeAnalytics />} />
 
           {/* Admin Routes */}
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
-          <Route path="/admin/colleges" element={<AdminDashboard />} />
-          <Route path="/admin/companies" element={<AdminDashboard />} />
-          <Route path="/admin/students" element={<AdminDashboard />} />
-          <Route path="/admin/analytics" element={<AdminDashboard />} />
+          <Route path="/admin/colleges" element={<AdminColleges />} />
+          <Route path="/admin/companies" element={<AdminCompanies />} />
+          <Route path="/admin/students" element={<AdminStudents />} />
+          <Route path="/admin/analytics" element={<AdminAnalytics />} />
 
           {/* Company Placeholder Routes */}
           <Route path="/company/login" element={<CompanyLogin />} />
