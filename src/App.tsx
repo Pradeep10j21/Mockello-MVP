@@ -23,9 +23,16 @@ import AdminColleges from "./pages/admin/AdminColleges";
 import AdminCompanies from "./pages/admin/AdminCompanies";
 import AdminStudents from "./pages/admin/AdminStudents";
 
-// Placeholder Modules
+// Company Module
 import CompanyLogin from "./pages/company/CompanyLogin";
+import CompanyOnboarding from "./pages/company/CompanyOnboarding";
 import CompanyDashboard from "./pages/company/CompanyDashboard";
+import CompanyProfile from "./pages/company/CompanyProfile";
+import CompanyJobCriteria from "./pages/company/CompanyJobCriteria";
+import CompanyColleges from "./pages/company/CompanyColleges";
+import CompanyUpdates from "./pages/company/CompanyUpdates";
+
+// Student Placeholder
 import StudentLogin from "./pages/student/StudentLogin";
 import StudentDashboard from "./pages/student/StudentDashboard";
 
@@ -58,9 +65,14 @@ const App = () => (
           <Route path="/admin/students" element={<AdminStudents />} />
           <Route path="/admin/analytics" element={<AdminAnalytics />} />
 
-          {/* Company Placeholder Routes */}
+          {/* Company Routes */}
           <Route path="/company/login" element={<CompanyLogin />} />
+          <Route path="/company/onboarding" element={<CompanyOnboarding />} />
           <Route path="/company/dashboard" element={<CompanyDashboard />} />
+          <Route path="/company/profile" element={<CompanyProfile />} />
+          <Route path="/company/criteria" element={<CompanyJobCriteria />} />
+          <Route path="/company/colleges" element={<CompanyColleges />} />
+          <Route path="/company/updates" element={<CompanyUpdates />} />
 
           {/* Student Placeholder Routes */}
           <Route path="/student/login" element={<StudentLogin />} />
