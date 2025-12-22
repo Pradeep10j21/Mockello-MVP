@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { 
   Leaf, Building2, User, FileText, ChevronRight, ChevronLeft, Check, 
-  MapPin, Globe, Phone, Mail, Users, Briefcase, Calendar, Award
+  MapPin, Globe, Phone, Mail, Users, Briefcase, Calendar, Award, Upload, X
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,7 +10,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
-
 const steps = [
   { id: 1, title: "Company Info", icon: Building2 },
   { id: 2, title: "Contact Details", icon: User },
@@ -66,9 +65,11 @@ const CompanyOnboarding = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Step 1: Company Basic Info
   const [companyName, setCompanyName] = useState("");
+  const [gstNumber, setGstNumber] = useState("");
   const [industry, setIndustry] = useState("");
   const [companyType, setCompanyType] = useState("");
   const [registrationNumber, setRegistrationNumber] = useState("");
@@ -97,13 +98,32 @@ const CompanyOnboarding = () => {
   const [minCgpa, setMinCgpa] = useState("");
   const [packageRange, setPackageRange] = useState("");
   const [internshipOffered, setInternshipOffered] = useState(false);
+  
+  // Internship Details
+  const [internshipStipend, setInternshipStipend] = useState("");
+  const [internshipDuration, setInternshipDuration] = useState("");
+  const [internshipType, setInternshipType] = useState("");
+  const [internshipConversion, setInternshipConversion] = useState("");
+  const [internshipRoles, setInternshipRoles] = useState("");
 
   // Step 4: About Company
   const [description, setDescription] = useState("");
   const [employeeCount, setEmployeeCount] = useState("");
   const [workCulture, setWorkCulture] = useState("");
   const [benefits, setBenefits] = useState("");
-  const [certifications, setCertifications] = useState("");
+  const [certificateFiles, setCertificateFiles] = useState<File[]>([]);
+
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (files) {
+      const newFiles = Array.from(files);
+      setCertificateFiles((prev) => [...prev, ...newFiles]);
+    }
+  };
+
+  const removeFile = (index: number) => {
+    setCertificateFiles((prev) => prev.filter((_, i) => i !== index));
+  };
 
   const branches = [
     "Computer Science",
@@ -307,6 +327,17 @@ const CompanyOnboarding = () => {
                       ))}
                     </SelectContent>
                   </Select>
+                </div>
+                <div>
+                  <label className="text-sm font-medium text-foreground mb-1.5 block">
+                    GST Number *
+                  </label>
+                  <Input
+                    placeholder="e.g., 22AAAAA0000A1Z5"
+                    value={gstNumber}
+                    onChange={(e) => setGstNumber(e.target.value.toUpperCase())}
+                    maxLength={15}
+                  />
                 </div>
                 <div>
                   <label className="text-sm font-medium text-foreground mb-1.5 block">
@@ -618,18 +649,113 @@ const CompanyOnboarding = () => {
                 </div>
               </div>
 
-              <div className="flex items-center space-x-2 pt-2">
-                <Checkbox
-                  id="internship"
-                  checked={internshipOffered}
-                  onCheckedChange={(checked) => setInternshipOffered(checked as boolean)}
-                />
-                <label
-                  htmlFor="internship"
-                  className="text-sm text-foreground cursor-pointer"
-                >
-                  We also offer internship opportunities
-                </label>
+              <div className="space-y-4 pt-2">
+                <div className="flex items-center space-x-2 p-4 bg-muted/30 rounded-lg border border-border">
+                  <Checkbox
+                    id="internship"
+                    checked={internshipOffered}
+                    onCheckedChange={(checked) => setInternshipOffered(checked as boolean)}
+                  />
+                  <label
+                    htmlFor="internship"
+                    className="text-sm font-medium text-foreground cursor-pointer"
+                  >
+                    We also offer internship opportunities
+                  </label>
+                </div>
+
+                {/* Expandable Internship Details */}
+                {internshipOffered && (
+                  <div className="p-5 bg-forest-light/10 rounded-xl border border-forest-light/30 space-y-4 animate-fade-in">
+                    <h3 className="text-sm font-semibold text-foreground flex items-center gap-2">
+                      <Briefcase className="w-4 h-4 text-forest-medium" />
+                      Internship Details
+                    </h3>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="text-sm font-medium text-foreground mb-1.5 block">
+                          Stipend Offered
+                        </label>
+                        <Select value={internshipStipend} onValueChange={setInternshipStipend}>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select stipend type" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="unpaid">Unpaid</SelectItem>
+                            <SelectItem value="below-5k">Below ₹5,000/month</SelectItem>
+                            <SelectItem value="5k-10k">₹5,000 - ₹10,000/month</SelectItem>
+                            <SelectItem value="10k-20k">₹10,000 - ₹20,000/month</SelectItem>
+                            <SelectItem value="20k-30k">₹20,000 - ₹30,000/month</SelectItem>
+                            <SelectItem value="above-30k">Above ₹30,000/month</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      
+                      <div>
+                        <label className="text-sm font-medium text-foreground mb-1.5 block">
+                          Internship Duration
+                        </label>
+                        <Select value={internshipDuration} onValueChange={setInternshipDuration}>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select duration" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="1-month">1 Month</SelectItem>
+                            <SelectItem value="2-months">2 Months</SelectItem>
+                            <SelectItem value="3-months">3 Months</SelectItem>
+                            <SelectItem value="6-months">6 Months</SelectItem>
+                            <SelectItem value="12-months">12 Months</SelectItem>
+                            <SelectItem value="flexible">Flexible</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      
+                      <div>
+                        <label className="text-sm font-medium text-foreground mb-1.5 block">
+                          Internship Type
+                        </label>
+                        <Select value={internshipType} onValueChange={setInternshipType}>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select type" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="onsite">On-site</SelectItem>
+                            <SelectItem value="remote">Remote</SelectItem>
+                            <SelectItem value="hybrid">Hybrid</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      
+                      <div>
+                        <label className="text-sm font-medium text-foreground mb-1.5 block">
+                          PPO/Conversion Opportunity
+                        </label>
+                        <Select value={internshipConversion} onValueChange={setInternshipConversion}>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select option" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="yes">Yes, PPO available</SelectItem>
+                            <SelectItem value="performance">Based on performance</SelectItem>
+                            <SelectItem value="no">No PPO offered</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      
+                      <div className="md:col-span-2">
+                        <label className="text-sm font-medium text-foreground mb-1.5 block">
+                          Internship Roles/Domains
+                        </label>
+                        <Input
+                          placeholder="e.g., Software Development, Marketing, Data Analysis"
+                          value={internshipRoles}
+                          onChange={(e) => setInternshipRoles(e.target.value)}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           )}
@@ -677,15 +803,72 @@ const CompanyOnboarding = () => {
                     </SelectContent>
                   </Select>
                 </div>
-                <div>
+                <div className="md:col-span-2">
                   <label className="text-sm font-medium text-foreground mb-1.5 block">
-                    Certifications/Awards
+                    Certifications & Awards
                   </label>
-                  <Input
-                    placeholder="e.g., ISO 9001, Great Place to Work"
-                    value={certifications}
-                    onChange={(e) => setCertifications(e.target.value)}
-                  />
+                  <p className="text-xs text-muted-foreground mb-3">
+                    Upload certificates, awards, or recognitions your company has received
+                  </p>
+                  
+                  <div
+                    onClick={() => fileInputRef.current?.click()}
+                    className="border-2 border-dashed border-border rounded-xl p-6 text-center cursor-pointer hover:border-forest-medium/50 hover:bg-muted/30 transition-all"
+                  >
+                    <input
+                      ref={fileInputRef}
+                      type="file"
+                      multiple
+                      accept=".pdf,.jpg,.jpeg,.png,.doc,.docx"
+                      onChange={handleFileUpload}
+                      className="hidden"
+                    />
+                    <Upload className="w-8 h-8 mx-auto text-muted-foreground mb-2" />
+                    <p className="text-sm font-medium text-foreground">Click to upload files</p>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      PDF, JPG, PNG, DOC up to 10MB each
+                    </p>
+                  </div>
+
+                  {/* Uploaded Files List */}
+                  {certificateFiles.length > 0 && (
+                    <div className="space-y-2 mt-4">
+                      <p className="text-sm font-medium text-foreground">
+                        Uploaded Files ({certificateFiles.length})
+                      </p>
+                      <div className="space-y-2">
+                        {certificateFiles.map((file, index) => (
+                          <div
+                            key={index}
+                            className="flex items-center justify-between p-3 bg-muted/50 rounded-lg border border-border"
+                          >
+                            <div className="flex items-center gap-3">
+                              <div className="w-10 h-10 bg-forest-light/20 rounded-lg flex items-center justify-center">
+                                <FileText className="w-5 h-5 text-forest-medium" />
+                              </div>
+                              <div>
+                                <p className="text-sm font-medium text-foreground truncate max-w-[200px]">
+                                  {file.name}
+                                </p>
+                                <p className="text-xs text-muted-foreground">
+                                  {(file.size / 1024 / 1024).toFixed(2)} MB
+                                </p>
+                              </div>
+                            </div>
+                            <Button
+                              type="button"
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => removeFile(index)}
+                              className="text-destructive hover:text-destructive hover:bg-destructive/10"
+                            >
+                              <X className="w-4 h-4" />
+                            </Button>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
                 <div className="md:col-span-2">
                   <label className="text-sm font-medium text-foreground mb-1.5 block">
