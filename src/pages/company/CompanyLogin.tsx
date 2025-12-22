@@ -79,10 +79,10 @@ const CompanyLogin = () => {
             <span className="font-display text-2xl font-bold text-primary-foreground">GenZ Placify</span>
           </div>
           
-          <h1 className="font-display text-4xl font-bold mb-4 text-primary">
+          <h1 className="font-display text-4xl font-bold mb-4 text-primary-foreground">
             Company Portal
           </h1>
-          <p className="text-lg max-w-md text-primary">
+          <p className="text-lg max-w-md text-primary-foreground">
             Connect with top colleges and find the perfect candidates for your organization.
           </p>
         </div>
