@@ -10,6 +10,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
+import { saveCompanyData, CompanyData } from "@/lib/companyStore";
 const steps = [
   { id: 1, title: "Company Info", icon: Building2 },
   { id: 2, title: "Contact Details", icon: User },
@@ -210,6 +211,49 @@ const CompanyOnboarding = () => {
     if (!validateStep(4)) return;
     
     setIsLoading(true);
+    
+    // Save company data to store
+    const companyData: CompanyData = {
+      companyName,
+      gstNumber,
+      industry,
+      companyType,
+      registrationNumber,
+      yearEstablished,
+      headquarters,
+      branchLocations,
+      website,
+      linkedIn,
+      hrName,
+      hrDesignation,
+      hrEmail,
+      hrPhone,
+      altContactName,
+      altContactEmail,
+      altContactPhone,
+      companyAddress,
+      pincode,
+      hiringFrequency,
+      recruitmentMode,
+      typicalRoles,
+      preferredBranches,
+      minCgpa,
+      packageRange,
+      internshipOffered,
+      internshipStipend,
+      internshipDuration,
+      internshipType,
+      internshipConversion,
+      internshipRoles,
+      description,
+      employeeCount,
+      workCulture,
+      benefits,
+      certificateFileNames: certificateFiles.map(f => f.name),
+    };
+    
+    saveCompanyData(companyData);
+    
     setTimeout(() => {
       setIsLoading(false);
       toast({

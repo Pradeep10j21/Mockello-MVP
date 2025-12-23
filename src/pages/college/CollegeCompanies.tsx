@@ -1,9 +1,10 @@
 import { useNavigate, Link } from "react-router-dom";
 import CollegeSidebar from "@/components/CollegeSidebar";
-import { Building2, Search, Filter, Eye, MapPin, Briefcase, Users, CheckCircle, Clock, XCircle } from "lucide-react";
+import { Search, Filter, Eye, MapPin, Briefcase, Users, CheckCircle, Clock, XCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
+import { sharedCompanies } from "@/lib/sharedCompanies";
 
 const CollegeCompanies = () => {
   const navigate = useNavigate();
@@ -12,69 +13,6 @@ const CollegeCompanies = () => {
   const handleLogout = () => {
     navigate("/");
   };
-
-  const companies = [
-    {
-      id: 1,
-      name: "TechCorp Solutions",
-      logo: "TC",
-      location: "Mumbai",
-      roles: ["Software Engineer", "Data Analyst"],
-      eligibility: "eligible",
-      openings: 15,
-      package: "12-18 LPA",
-    },
-    {
-      id: 2,
-      name: "DataFlow Inc",
-      logo: "DF",
-      location: "Bangalore",
-      roles: ["Data Scientist", "ML Engineer"],
-      eligibility: "eligible",
-      openings: 8,
-      package: "15-22 LPA",
-    },
-    {
-      id: 3,
-      name: "CloudNine Systems",
-      logo: "CN",
-      location: "Pune",
-      roles: ["DevOps Engineer", "SRE"],
-      eligibility: "pending",
-      openings: 12,
-      package: "10-15 LPA",
-    },
-    {
-      id: 4,
-      name: "AI Dynamics",
-      logo: "AI",
-      location: "Hyderabad",
-      roles: ["AI Engineer", "Research Scientist"],
-      eligibility: "not_eligible",
-      openings: 5,
-      package: "18-25 LPA",
-    },
-    {
-      id: 5,
-      name: "FinTech Pro",
-      logo: "FP",
-      location: "Delhi",
-      roles: ["Backend Developer", "Frontend Developer"],
-      eligibility: "eligible",
-      openings: 20,
-      package: "8-14 LPA",
-    },
-    {
-      id: 6,
-      name: "GreenEnergy Corp",
-      logo: "GE",
-      location: "Chennai",
-      roles: ["Electrical Engineer", "Project Manager"],
-      eligibility: "pending",
-      openings: 10,
-      package: "9-12 LPA",
-    },
-  ];
 
   const getEligibilityBadge = (status: string) => {
     switch (status) {
@@ -104,7 +42,7 @@ const CollegeCompanies = () => {
     }
   };
 
-  const filteredCompanies = companies.filter((company) =>
+  const filteredCompanies = sharedCompanies.filter((company) =>
     company.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
@@ -151,9 +89,14 @@ const CollegeCompanies = () => {
             >
               <div className="flex items-start justify-between mb-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-xl bg-primary flex items-center justify-center text-primary-foreground font-bold">
-                    {company.logo}
-                  </div>
+                  <img
+                    src={company.logo}
+                    alt={company.name}
+                    className="w-12 h-12 rounded-xl object-contain bg-white p-2 shadow-sm"
+                    onError={(e) => {
+                      e.currentTarget.src = `https://ui-avatars.com/api/?name=${company.name}&background=2D5A4A&color=fff`;
+                    }}
+                  />
                   <div>
                     <h3 className="font-semibold text-foreground">{company.name}</h3>
                     <p className="text-sm text-muted-foreground flex items-center gap-1">

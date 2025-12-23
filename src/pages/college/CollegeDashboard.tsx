@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import CollegeSidebar from "@/components/CollegeSidebar";
 import { Building2, Briefcase, Target, Bell, TrendingUp, Users, Calendar, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { sharedCompanies } from "@/lib/sharedCompanies";
 
 const CollegeDashboard = () => {
   const navigate = useNavigate();
@@ -41,87 +42,46 @@ const CollegeDashboard = () => {
     },
   ];
 
-  // Real companies with their logos
-  const featuredCompanies = [
-    {
-      name: "TCS",
-      logo: "https://logo.clearbit.com/tcs.com",
-      roles: ["Software Engineer", "System Analyst"],
-      package: "7-12 LPA",
-      status: "Hiring",
-    },
-    {
-      name: "Wipro",
-      logo: "https://logo.clearbit.com/wipro.com",
-      roles: ["Project Engineer", "Developer"],
-      package: "6-10 LPA",
-      status: "Hiring",
-    },
-    {
-      name: "Zoho",
-      logo: "https://logo.clearbit.com/zoho.com",
-      roles: ["Software Developer", "QA Engineer"],
-      package: "8-15 LPA",
-      status: "Upcoming",
-    },
-    {
-      name: "Accenture",
-      logo: "https://logo.clearbit.com/accenture.com",
-      roles: ["Associate SE", "Analyst"],
-      package: "6-9 LPA",
-      status: "Hiring",
-    },
-    {
-      name: "Infosys",
-      logo: "https://logo.clearbit.com/infosys.com",
-      roles: ["Systems Engineer", "Trainee"],
-      package: "5-8 LPA",
-      status: "Hiring",
-    },
-    {
-      name: "Cognizant",
-      logo: "https://logo.clearbit.com/cognizant.com",
-      roles: ["Programmer Analyst", "Graduate Trainee"],
-      package: "5-9 LPA",
-      status: "Upcoming",
-    },
-  ];
+  // Use shared companies for featured companies
+  const featuredCompanies = sharedCompanies.slice(0, 6);
 
+  // Recent activities based on shared companies
   const recentActivities = [
     {
-      company: "TCS",
-      logo: "https://logo.clearbit.com/tcs.com",
+      company: sharedCompanies[0].name,
+      logo: sharedCompanies[0].logo,
       action: "Posted new opportunity",
-      role: "Software Engineer",
+      role: sharedCompanies[0].roles[0],
       time: "2 hours ago",
     },
     {
-      company: "Wipro",
-      logo: "https://logo.clearbit.com/wipro.com",
+      company: sharedCompanies[1].name,
+      logo: sharedCompanies[1].logo,
       action: "Updated eligibility criteria",
-      role: "Project Engineer",
+      role: sharedCompanies[1].roles[0],
       time: "5 hours ago",
     },
     {
-      company: "Zoho",
-      logo: "https://logo.clearbit.com/zoho.com",
+      company: sharedCompanies[2].name,
+      logo: sharedCompanies[2].logo,
       action: "Scheduled campus visit",
-      role: "Software Developer",
+      role: sharedCompanies[2].roles[0],
       time: "1 day ago",
     },
     {
-      company: "Accenture",
-      logo: "https://logo.clearbit.com/accenture.com",
+      company: sharedCompanies[3].name,
+      logo: sharedCompanies[3].logo,
       action: "Requested student list",
-      role: "Associate SE",
+      role: sharedCompanies[3].roles[0],
       time: "2 days ago",
     },
   ];
 
+  // Upcoming drives based on shared companies
   const upcomingDrives = [
-    { company: "TCS", logo: "https://logo.clearbit.com/tcs.com", date: "Dec 15, 2024", roles: 3, students: 120 },
-    { company: "Infosys", logo: "https://logo.clearbit.com/infosys.com", date: "Dec 18, 2024", roles: 2, students: 85 },
-    { company: "Wipro", logo: "https://logo.clearbit.com/wipro.com", date: "Dec 22, 2024", roles: 4, students: 200 },
+    { company: sharedCompanies[0].name, logo: sharedCompanies[0].logo, date: "Dec 15, 2024", roles: 3, students: 120 },
+    { company: sharedCompanies[4].name, logo: sharedCompanies[4].logo, date: "Dec 18, 2024", roles: 2, students: 85 },
+    { company: sharedCompanies[1].name, logo: sharedCompanies[1].logo, date: "Dec 22, 2024", roles: 4, students: 200 },
   ];
 
   return (
@@ -178,10 +138,10 @@ const CollegeDashboard = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {featuredCompanies.map((company, index) => (
               <div
-                key={index}
+                key={company.id}
                 className="card-forest hover:shadow-medium transition-all cursor-pointer animate-fade-up"
                 style={{ animationDelay: `${index * 0.1}s` }}
-                onClick={() => navigate(`/college/company/${index + 1}`)}
+                onClick={() => navigate(`/college/company/${company.id}`)}
               >
                 <div className="flex items-start gap-4">
                   <img
