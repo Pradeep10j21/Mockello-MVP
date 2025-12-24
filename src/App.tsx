@@ -32,9 +32,15 @@ import CompanyJobCriteria from "./pages/company/CompanyJobCriteria";
 import CompanyColleges from "./pages/company/CompanyColleges";
 import CompanyUpdates from "./pages/company/CompanyUpdates";
 
-// Student Placeholder
-import StudentLogin from "./pages/student/StudentLogin";
+// Student Module
+import StudentLandingPage from "./pages/student/StudentLandingPage";
+import StudentAuthPage from "./pages/student/StudentAuthPage";
+import StudentOnboardingPage from "./pages/student/StudentOnboardingPage";
 import StudentDashboard from "./pages/student/StudentDashboard";
+import StudentCompaniesPage from "./pages/student/StudentCompaniesPage";
+import StudentCompanyDetailPage from "./pages/student/StudentCompanyDetailPage";
+import StudentApplicationsPage from "./pages/student/StudentApplicationsPage";
+import StudentProfilePage from "./pages/student/StudentProfilePage";
 
 const queryClient = new QueryClient();
 
@@ -74,9 +80,15 @@ const App = () => (
           <Route path="/company/colleges" element={<CompanyColleges />} />
           <Route path="/company/updates" element={<CompanyUpdates />} />
 
-          {/* Student Placeholder Routes */}
-          <Route path="/student/login" element={<StudentLogin />} />
+          {/* Student Portal Routes */}
+          <Route path="/student" element={<StudentLandingPage />} />
+          <Route path="/student/auth" element={<StudentAuthPage />} />
+          <Route path="/student/onboarding" element={<StudentOnboardingPage />} />
           <Route path="/student/dashboard" element={<StudentDashboard />} />
+          <Route path="/student/companies" element={<StudentCompaniesPage />} />
+          <Route path="/student/companies/:id" element={<StudentCompanyDetailPage />} />
+          <Route path="/student/applications" element={<StudentApplicationsPage />} />
+          <Route path="/student/profile" element={<StudentProfilePage />} />
 
           {/* Catch-all */}
           <Route path="*" element={<NotFound />} />
