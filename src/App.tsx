@@ -82,6 +82,7 @@ const App = () => (
 
           {/* Student Portal Routes */}
           <Route path="/student" element={<StudentLandingPage />} />
+          <Route path="/student/login" element={<StudentAuthPage />} />
           <Route path="/student/auth" element={<StudentAuthPage />} />
           <Route path="/student/onboarding" element={<StudentOnboardingPage />} />
           <Route path="/student/dashboard" element={<StudentDashboard />} />
