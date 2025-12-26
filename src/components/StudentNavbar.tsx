@@ -9,7 +9,13 @@ const StudentNavbar = () => {
         <nav className="flex items-center justify-between h-16">
           <StudentLogo />
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-6">
+            <Link
+              to="/"
+              className="text-muted-foreground hover:text-foreground transition-colors font-medium"
+            >
+              Back to Home
+            </Link>
             <Link
               to="/student/auth"
               className="text-muted-foreground hover:text-foreground transition-colors font-medium"

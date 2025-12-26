@@ -46,7 +46,7 @@ const StudentDashboardLayout = ({ children }: StudentDashboardLayoutProps) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    navigate("/student");
+    navigate("/");
   };
 
   return (
