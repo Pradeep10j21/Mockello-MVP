@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight, Play, Building2, Bot, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const trustBadges = [
   { icon: Building2, text: "50+ Company Tests" },
@@ -81,9 +82,12 @@ const GenzFinalCTA = () => {
             <Button
               size="lg"
               className="bg-accent hover:bg-accent/90 text-accent-foreground group px-8 py-6 text-lg font-semibold"
+              asChild
             >
-              Start Your Test Now
-              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              <Link to="/mock-placement/assessment">
+                Start Your Test Now
+                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Link>
             </Button>
             <Button
               size="lg"

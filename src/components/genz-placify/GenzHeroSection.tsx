@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { ArrowRight, Play, Code, BarChart3, Terminal, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const rotatingWords = ["Test", "Compete", "Succeed", "Get Placed"];
 
@@ -143,9 +144,11 @@ const GenzHeroSection = () => {
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
-          <Button size="lg" className="btn-forest group px-8 py-6 text-lg">
-            Begin Your Assessment
-            <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          <Button size="lg" className="btn-forest group px-8 py-6 text-lg" asChild>
+            <Link to="/mock-placement/assessment">
+              Begin Your Assessment
+              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Link>
           </Button>
           <Button
             size="lg"
