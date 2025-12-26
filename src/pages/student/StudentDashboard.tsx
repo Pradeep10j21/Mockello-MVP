@@ -3,7 +3,7 @@ import StudentDashboardLayout from "@/components/StudentDashboardLayout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Building2, FileText, Clock, ArrowRight, Briefcase } from "lucide-react";
+import { Building2, FileText, Clock, ArrowRight, Briefcase, Rocket } from "lucide-react";
 
 const stats = [
   { label: "Eligible Companies", value: "12", icon: Building2, color: "text-primary", bgColor: "bg-primary/10", href: "/student/companies" },
@@ -26,7 +26,15 @@ const StudentDashboard = () => {
   return (
     <StudentDashboardLayout>
       <div className="space-y-8">
-        <div><h1 className="text-3xl font-serif font-bold">Dashboard</h1><p className="text-muted-foreground">Track your placement journey and opportunities</p></div>
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div><h1 className="text-3xl font-serif font-bold">Dashboard</h1><p className="text-muted-foreground">Track your placement journey and opportunities</p></div>
+          <a href="https://aptitude-ally.lovable.app" target="_blank" rel="noopener noreferrer">
+            <Button className="gap-2">
+              <Rocket className="w-4 h-4" />
+              Start Mock Placement Drive
+            </Button>
+          </a>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {stats.map((stat) => (
