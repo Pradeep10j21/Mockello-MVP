@@ -42,6 +42,9 @@ import StudentCompanyDetailPage from "./pages/student/StudentCompanyDetailPage";
 import StudentApplicationsPage from "./pages/student/StudentApplicationsPage";
 import StudentProfilePage from "./pages/student/StudentProfilePage";
 
+// Mock Placement Module
+import GenzPlacifyLanding from "./pages/mock-placement/GenzPlacifyLanding";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -90,6 +93,9 @@ const App = () => (
           <Route path="/student/companies/:id" element={<StudentCompanyDetailPage />} />
           <Route path="/student/applications" element={<StudentApplicationsPage />} />
           <Route path="/student/profile" element={<StudentProfilePage />} />
+
+          {/* Mock Placement Routes */}
+          <Route path="/mock-placement" element={<GenzPlacifyLanding />} />
 
           {/* Catch-all */}
           <Route path="*" element={<NotFound />} />
