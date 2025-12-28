@@ -23,7 +23,7 @@ export function TranscriptPanel({ messages }: TranscriptPanelProps) {
       {/* Header */}
       <div className="px-4 py-3 border-b border-border/50">
         <h3 className="font-display font-semibold text-foreground">Discussion Transcript</h3>
-        <p className="text-xs text-muted mt-0.5">{messages.length} messages</p>
+        <p className="text-xs text-[#0F2C1F] dark:text-[#2d5a3d] mt-0.5 font-medium">{messages.length} messages</p>
       </div>
 
       {/* Messages - Scrollable */}
@@ -52,14 +52,14 @@ export function TranscriptPanel({ messages }: TranscriptPanelProps) {
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
-                      <span className="font-medium text-sm text-foreground">
+                      <span className="font-medium text-sm text-[#0F2C1F] dark:text-[#2d5a3d]">
                         {message.participantName}
                       </span>
-                      <span className="text-xs text-muted">
+                      <span className="text-xs text-[#0F2C1F]/70 dark:text-[#2d5a3d]/70">
                         {formatDistanceToNow(message.timestamp, { addSuffix: true })}
                       </span>
                     </div>
-                    <p className="text-sm text-foreground/90 mt-1 leading-relaxed">
+                    <p className="text-sm text-[#0F2C1F] dark:text-[#2d5a3d] mt-1 leading-relaxed">
                       {message.content}
                     </p>
                   </div>

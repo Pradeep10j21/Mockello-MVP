@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowRight, Clock, CheckCircle, Lightbulb, Brain, Sparkles, RefreshCw, Trophy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { questions, getCategoryLabel, getDifficultyColor } from '@/data/questions';
 import { AssessmentPhase, FeedbackState, UserAnswer } from '@/types/assessment';
 import LearningMode from '@/components/assessment/LearningMode';
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog';
 
 const MockPlacementAssessment = () => {
   const navigate = useNavigate();
@@ -14,6 +15,30 @@ const MockPlacementAssessment = () => {
   const [feedbackState, setFeedbackState] = useState<FeedbackState>('none');
   const [userAnswers, setUserAnswers] = useState<UserAnswer[]>([]);
   const [seconds, setSeconds] = useState(0);
+  const [showTabWarning, setShowTabWarning] = useState(false);
+
+  // Tab switch warning
+  useEffect(() => {
+    if (phase !== 'assessment') return;
+
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        setShowTabWarning(true);
+      }
+    };
+
+    const handleBlur = () => {
+      setShowTabWarning(true);
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    window.addEventListener('blur', handleBlur);
+
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      window.removeEventListener('blur', handleBlur);
+    };
+  }, [phase]);
 
   const currentQuestion = questions[currentQuestionIndex];
 
@@ -159,6 +184,22 @@ const MockPlacementAssessment = () => {
 
   return (
     <div className="min-h-screen bg-background py-8 px-4">
+      <AlertDialog open={showTabWarning} onOpenChange={setShowTabWarning}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Warning: Tab Switch Detected</AlertDialogTitle>
+            <AlertDialogDescription>
+              You have switched tabs or minimized the window. Please stay on this page during the assessment. 
+              Multiple tab switches may result in disqualification.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogAction onClick={() => setShowTabWarning(false)}>
+              I Understand
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
       <div className="max-w-3xl mx-auto">
         {/* Header */}
         <div className="flex items-center justify-between mb-6">

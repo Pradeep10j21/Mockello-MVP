@@ -28,7 +28,7 @@ export function TopicHeader({ topic, timeRemaining, isRecording }: TopicHeaderPr
           <MessageSquare className="w-5 h-5 text-primary" />
         </div>
         <div>
-          <p className="text-xs text-muted font-medium uppercase tracking-wide">Discussion Topic</p>
+          <p className="text-xs text-[#0F2C1F] dark:text-[#2d5a3d] font-medium uppercase tracking-wide">Discussion Topic</p>
           <h2 className="font-display text-lg font-semibold text-foreground">{topic}</h2>
         </div>
       </div>

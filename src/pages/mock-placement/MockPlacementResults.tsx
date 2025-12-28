@@ -161,10 +161,10 @@ const MockPlacementResults = () => {
           <div className="w-24 h-24 rounded-2xl bg-accent mx-auto mb-6 flex items-center justify-center animate-scale-in">
             <PerformanceIcon className="w-12 h-12 text-accent-foreground" />
           </div>
-          <h1 className="text-5xl font-bold font-serif mb-4 text-gradient-forest">
+          <h1 className="text-5xl font-bold font-serif mb-4 bg-primary text-primary-foreground px-8 py-4 rounded-xl inline-block shadow-lg">
             Assessment Complete!
           </h1>
-          <p className="text-xl text-muted-foreground mb-2">
+          <p className="text-xl text-[#0F2C1F] dark:text-[#2d5a3d] mb-2 font-medium">
             Here's your personalized performance analysis
           </p>
           <Badge variant="secondary" className="text-lg px-4 py-2">
@@ -180,14 +180,14 @@ const MockPlacementResults = () => {
               <div className="w-12 h-12 rounded-xl bg-primary/10 mx-auto mb-2 flex items-center justify-center">
                 <Target className="w-6 h-6 text-primary" />
               </div>
-              <CardTitle className="text-sm text-muted-foreground">Accuracy</CardTitle>
+              <CardTitle className="text-sm text-[#0F2C1F] dark:text-[#2d5a3d] font-semibold">Accuracy</CardTitle>
             </CardHeader>
             <CardContent className="text-center">
               <div className="text-4xl font-bold text-primary mb-1">
                 {animatedStats.accuracy}%
               </div>
               <Progress value={result.accuracy} className="h-2 mb-2" />
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-[#0F2C1F] dark:text-[#2d5a3d] font-medium">
                 {result.correctAnswers} of {result.totalQuestions} correct
               </p>
             </CardContent>
@@ -198,13 +198,13 @@ const MockPlacementResults = () => {
               <div className="w-12 h-12 rounded-xl bg-secondary/10 mx-auto mb-2 flex items-center justify-center">
                 <CheckCircle className="w-6 h-6 text-secondary" />
               </div>
-              <CardTitle className="text-sm text-muted-foreground">Score</CardTitle>
+              <CardTitle className="text-sm text-[#0F2C1F] dark:text-[#2d5a3d] font-semibold">Score</CardTitle>
             </CardHeader>
             <CardContent className="text-center">
               <div className="text-4xl font-bold text-secondary mb-1">
                 {animatedStats.correctAnswers}
               </div>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-[#0F2C1F] dark:text-[#2d5a3d] font-medium">
                 out of {result.totalQuestions}
               </p>
               <div className="flex justify-center mt-2">
@@ -220,13 +220,13 @@ const MockPlacementResults = () => {
               <div className="w-12 h-12 rounded-xl bg-accent/10 mx-auto mb-2 flex items-center justify-center">
                 <Clock className="w-6 h-6 text-accent" />
               </div>
-              <CardTitle className="text-sm text-muted-foreground">Time Spent</CardTitle>
+              <CardTitle className="text-sm text-[#0F2C1F] dark:text-[#2d5a3d] font-semibold">Time Spent</CardTitle>
             </CardHeader>
             <CardContent className="text-center">
               <div className="text-4xl font-bold text-accent mb-1">
                 {formatTime(animatedStats.timeSpent)}
               </div>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-[#0F2C1F] dark:text-[#2d5a3d] font-medium">
                 Average: {Math.round(result.timeSpent / result.totalQuestions)}s per question
               </p>
             </CardContent>
@@ -241,8 +241,8 @@ const MockPlacementResults = () => {
                 <Lightbulb className="w-5 h-5 text-primary" />
               </div>
               <div>
-                <h3 className="text-lg font-semibold mb-2">Performance Analysis</h3>
-                <p className="text-muted-foreground">{performance.description}</p>
+                <h3 className="text-lg font-semibold mb-2 text-[#0F2C1F] dark:text-[#2d5a3d]">Performance Analysis</h3>
+                <p className="text-[#0F2C1F] dark:text-[#2d5a3d]">{performance.description}</p>
               </div>
             </div>
           </CardContent>
@@ -261,8 +261,8 @@ const MockPlacementResults = () => {
               {Object.entries(result.categoryBreakdown).map(([category, stats], index) => (
                 <div key={category} className="space-y-2">
                   <div className="flex justify-between items-center">
-                    <span className="text-sm font-medium">{category}</span>
-                    <span className="text-sm text-muted-foreground">
+                    <span className="text-sm font-medium text-[#0F2C1F] dark:text-[#2d5a3d]">{category}</span>
+                    <span className="text-sm text-[#0F2C1F] dark:text-[#2d5a3d] font-semibold">
                       {stats.correct}/{stats.total}
                     </span>
                   </div>
@@ -270,7 +270,7 @@ const MockPlacementResults = () => {
                     value={(stats.correct / stats.total) * 100}
                     className="h-2"
                   />
-                  <p className="text-xs text-muted-foreground">
+                  <p className="text-xs text-[#0F2C1F] dark:text-[#2d5a3d] font-medium">
                     {Math.round((stats.correct / stats.total) * 100)}% accuracy
                   </p>
                 </div>
@@ -298,12 +298,12 @@ const MockPlacementResults = () => {
                     }>
                       {difficulty}
                     </Badge>
-                    <span className="text-sm text-muted-foreground">
+                    <span className="text-sm text-[#0F2C1F] dark:text-[#2d5a3d] font-medium">
                       {stats.correct}/{stats.total} correct
                     </span>
                   </div>
                   <div className="text-right">
-                    <span className="text-sm font-medium">
+                    <span className="text-sm font-semibold text-[#0F2C1F] dark:text-[#2d5a3d]">
                       {Math.round((stats.correct / stats.total) * 100)}%
                     </span>
                   </div>
@@ -326,7 +326,7 @@ const MockPlacementResults = () => {
               {recommendations.map((recommendation, index) => (
                 <div key={index} className="flex items-start gap-3">
                   <CheckCircle className="w-5 h-5 text-secondary mt-0.5 flex-shrink-0" />
-                  <p className="text-sm">{recommendation}</p>
+                  <p className="text-sm text-[#0F2C1F] dark:text-[#2d5a3d] font-medium">{recommendation}</p>
                 </div>
               ))}
             </div>

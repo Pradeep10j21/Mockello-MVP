@@ -141,10 +141,11 @@ const StudentOnboardingPage = () => {
                     <Building className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
                     <Input
                       id="collegeName"
+                      placeholder="Enter your college name"
                       value={formData.collegeName}
                       onChange={(e) => updateFormData("collegeName", e.target.value)}
-                      className="pl-10 h-12 bg-secondary/50"
-                      disabled
+                      className="pl-10 h-12"
+                      required
                     />
                   </div>
                 </div>

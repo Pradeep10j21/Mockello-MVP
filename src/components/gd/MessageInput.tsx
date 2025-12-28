@@ -123,12 +123,12 @@ export function MessageInput({ onSendMessage, isMuted, onToggleMute }: MessageIn
               <>
                 <div className="flex items-center gap-1">
                   <span className="w-2 h-2 bg-destructive rounded-full animate-pulse" />
-                  <span className="text-sm text-foreground">Listening...</span>
+                  <span className="text-sm text-[#0F2C1F] dark:text-[#2d5a3d] font-medium">Listening...</span>
                 </div>
-                <p className="flex-1 text-sm text-muted truncate">{message || 'Speak now...'}</p>
+                <p className="flex-1 text-sm text-[#0F2C1F] dark:text-[#2d5a3d] truncate font-medium">{message || 'Speak now...'}</p>
               </>
             ) : (
-              <p className="text-sm text-muted">Click mic to start speaking</p>
+              <p className="text-sm text-[#0F2C1F] dark:text-[#2d5a3d] font-medium">Click mic to start speaking</p>
             )}
           </div>
         )}

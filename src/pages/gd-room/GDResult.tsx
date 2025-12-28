@@ -104,7 +104,7 @@ export default function GDResult() {
           <Button
             variant="ghost"
             onClick={() => navigate('/gd-portal')}
-            className="gap-2 text-muted hover:text-foreground"
+            className="gap-2 text-[#0F2C1F] dark:text-[#2d5a3d] hover:text-[#0F2C1F] dark:hover:text-[#2d5a3d] font-medium"
           >
             <ArrowLeft className="w-4 h-4" />
             Start New Discussion
@@ -118,11 +118,11 @@ export default function GDResult() {
           transition={{ delay: 0.1 }}
           className="text-center space-y-2"
         >
-          <h1 className="font-display text-4xl font-bold text-foreground">
+          <h1 className="font-display text-4xl font-bold text-[#0F2C1F] dark:text-[#2d5a3d]">
             Your Performance Report
           </h1>
-          <p className="text-muted">AI-powered analysis of your group discussion</p>
-          <p className="text-sm text-muted/70 italic">Topic: "{topic}"</p>
+          <p className="text-[#0F2C1F] dark:text-[#2d5a3d] font-medium">AI-powered analysis of your group discussion</p>
+          <p className="text-sm text-[#0F2C1F] dark:text-[#2d5a3d] italic font-medium">Topic: "{topic}"</p>
         </motion.div>
 
         {/* Score Card */}
@@ -138,26 +138,26 @@ export default function GDResult() {
                 Y
               </div>
               <div>
-                <h2 className="font-display text-2xl font-semibold text-foreground">You</h2>
-                <p className="text-muted">Discussion Participant</p>
+                <h2 className="font-display text-2xl font-semibold text-[#0F2C1F] dark:text-[#2d5a3d]">You</h2>
+                <p className="text-[#0F2C1F] dark:text-[#2d5a3d] font-medium">Discussion Participant</p>
               </div>
             </div>
 
             <div className="text-center">
               <div className="flex items-center gap-3">
                 <Trophy className="w-8 h-8 text-yellow-500" />
-                <span className="text-5xl font-display font-bold text-foreground">
+                <span className="text-5xl font-display font-bold text-[#0F2C1F] dark:text-[#2d5a3d]">
                   {getRankLabel(result.rank)}
                 </span>
               </div>
-              <p className="text-sm text-muted mt-1">Overall Rank</p>
+              <p className="text-sm text-[#0F2C1F] dark:text-[#2d5a3d] mt-1 font-medium">Overall Rank</p>
             </div>
 
             <div className="text-center">
-              <div className={`text-5xl font-display font-bold ${getScoreColor(result.score)}`}>
+              <div className="text-5xl font-display font-bold text-[#0F2C1F] dark:text-[#2d5a3d]">
                 {result.score}
               </div>
-              <p className="text-sm text-muted mt-1">out of 10</p>
+              <p className="text-sm text-[#0F2C1F] dark:text-[#2d5a3d] mt-1 font-medium">out of 10</p>
             </div>
           </div>
         </motion.div>
@@ -169,7 +169,7 @@ export default function GDResult() {
           transition={{ delay: 0.3 }}
           className="bg-card rounded-3xl shadow-card p-6"
         >
-          <h3 className="font-display text-xl font-semibold text-foreground mb-6 flex items-center gap-2">
+          <h3 className="font-display text-xl font-semibold text-[#0F2C1F] dark:text-[#2d5a3d] mb-6 flex items-center gap-2">
             <BarChart3 className="w-5 h-5 text-primary" />
             Score Breakdown
           </h3>
@@ -183,8 +183,8 @@ export default function GDResult() {
                 className="flex items-center gap-4"
               >
                 <div className="w-40 flex items-center gap-2">
-                  <metric.icon className="w-4 h-4 text-muted" />
-                  <span className="text-sm font-medium text-foreground">{metric.label}</span>
+                  <metric.icon className="w-4 h-4 text-[#0F2C1F] dark:text-[#2d5a3d]" />
+                  <span className="text-sm font-medium text-[#0F2C1F] dark:text-[#2d5a3d]">{metric.label}</span>
                 </div>
                 <div className="flex-1">
                   <Progress value={metric.value * 10} className="h-3" />
@@ -206,13 +206,13 @@ export default function GDResult() {
             transition={{ delay: 0.5 }}
             className="bg-card rounded-2xl shadow-card p-5"
           >
-            <h3 className="font-display text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
+            <h3 className="font-display text-lg font-semibold text-[#0F2C1F] dark:text-[#2d5a3d] mb-4 flex items-center gap-2">
               <TrendingUp className="w-5 h-5 text-green-600" />
               Strengths
             </h3>
             <ul className="space-y-2">
               {result.strengths.map((strength, index) => (
-                <li key={index} className="flex items-start gap-2 text-sm text-foreground/90">
+                <li key={index} className="flex items-start gap-2 text-sm text-[#0F2C1F] dark:text-[#2d5a3d]">
                   <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
                   {strength}
                 </li>
@@ -227,13 +227,13 @@ export default function GDResult() {
             transition={{ delay: 0.6 }}
             className="bg-card rounded-2xl shadow-card p-5"
           >
-            <h3 className="font-display text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
+            <h3 className="font-display text-lg font-semibold text-[#0F2C1F] dark:text-[#2d5a3d] mb-4 flex items-center gap-2">
               <TrendingDown className="w-5 h-5 text-amber-600" />
               Areas to Improve
             </h3>
             <ul className="space-y-2">
               {result.weaknesses.map((weakness, index) => (
-                <li key={index} className="flex items-start gap-2 text-sm text-foreground/90">
+                <li key={index} className="flex items-start gap-2 text-sm text-[#0F2C1F] dark:text-[#2d5a3d]">
                   <div className="w-1.5 h-1.5 rounded-full bg-amber-600 mt-2 flex-shrink-0" />
                   {weakness}
                 </li>
@@ -248,13 +248,13 @@ export default function GDResult() {
             transition={{ delay: 0.7 }}
             className="bg-card rounded-2xl shadow-card p-5"
           >
-            <h3 className="font-display text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
+            <h3 className="font-display text-lg font-semibold text-[#0F2C1F] dark:text-[#2d5a3d] mb-4 flex items-center gap-2">
               <Lightbulb className="w-5 h-5 text-primary" />
               Suggestions
             </h3>
             <ul className="space-y-2">
               {result.suggestions.map((suggestion, index) => (
-                <li key={index} className="flex items-start gap-2 text-sm text-foreground/90">
+                <li key={index} className="flex items-start gap-2 text-sm text-[#0F2C1F] dark:text-[#2d5a3d]">
                   <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
                   {suggestion}
                 </li>

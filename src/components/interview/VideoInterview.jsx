@@ -262,9 +262,22 @@ function VideoInterview({ isActive, onStart, onStop, onTranscriptUpdate, onAnswe
       </div>
 
       <div className="transcript-section">
-        <div className="transcript-header">
-          <h3>Live Transcript</h3>
-          {isActive && transcript.trim().length > 0 && (
+        <textarea
+          ref={transcriptRef}
+          className="transcript-textarea"
+          value={transcript}
+          readOnly
+          placeholder="Your speech will appear here... Speak clearly and naturally."
+          autoFocus={false}
+        />
+        {isActive && transcript.trim().length > 0 && (
+          <div className="transcript-footer">
+            <div className="transcript-footer-left">
+              <span className="word-count">{transcript.trim().split(/\s+/).filter(w => w.length > 0).length} words</span>
+              {silenceTimer >= 2 && (
+                <span className="auto-advance-hint">Auto-advancing in {4 - silenceTimer} seconds...</span>
+              )}
+            </div>
             <button 
               className="next-question-btn" 
               onClick={handleNextQuestion}
@@ -272,24 +285,6 @@ function VideoInterview({ isActive, onStart, onStop, onTranscriptUpdate, onAnswe
             >
               Next Question →
             </button>
-          )}
-        </div>
-        <div className="transcript-wrapper">
-          <textarea
-            ref={transcriptRef}
-            className="transcript-textarea"
-            value={transcript}
-            readOnly
-            placeholder="Your speech will appear here... Speak clearly and naturally."
-            autoFocus={false}
-          />
-        </div>
-        {isActive && transcript.trim().length > 0 && (
-          <div className="transcript-footer">
-            <span className="word-count">{transcript.trim().split(/\s+/).filter(w => w.length > 0).length} words</span>
-            {silenceTimer >= 2 && (
-              <span className="auto-advance-hint">Auto-advancing in {4 - silenceTimer} seconds...</span>
-            )}
           </div>
         )}
       </div>

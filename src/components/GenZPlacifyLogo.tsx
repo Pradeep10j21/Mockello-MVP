@@ -28,10 +28,7 @@ const GenZPlacifyLogo = ({ size = "md", className = "" }: GenZPlacifyLogoProps) 
         />
       </div>
       <h1 className={`font-display font-bold tracking-tight ${sizeClasses[size]}`}>
-        <span className="text-foreground">Gen-Z</span>
-        <span className="ml-1 bg-gradient-to-r from-forest-deep via-forest-medium to-sage bg-clip-text text-transparent">
-          Placify
-        </span>
+        <span className="text-foreground bg-primary/10 px-3 py-1 rounded-lg">Mockello</span>
       </h1>
     </div>
   );

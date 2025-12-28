@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Search, Filter, MapPin, Users, GraduationCap, Eye, Send, CheckCircle, Clock, Building2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -227,9 +228,16 @@ const CompanyColleges = () => {
                 </div>
 
                 <div className="flex gap-2">
-                  <Button variant="outline" size="sm" className="flex-1 gap-1.5">
-                    <Eye className="w-4 h-4" />
-                    View
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="flex-1 gap-1.5"
+                    asChild
+                  >
+                    <Link to={`/company/college/${college.id}`}>
+                      <Eye className="w-4 h-4" />
+                      View
+                    </Link>
                   </Button>
                   {college.status === "new" && (
                     <Button

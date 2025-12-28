@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import './AIQuestionPanel.css';
 
 function AIQuestionPanel({ currentQuestion, questionNumber, totalQuestions, isInterviewActive, allAnswered, onSkipQuestion, canSkip }) {
   const [displayedText, setDisplayedText] = useState('');
   const [isTyping, setIsTyping] = useState(false);
+  const audioRef = useRef(null);
 
   useEffect(() => {
     if (currentQuestion && isInterviewActive) {
@@ -12,6 +13,15 @@ function AIQuestionPanel({ currentQuestion, questionNumber, totalQuestions, isIn
       
       const questionText = currentQuestion.question;
       let index = 0;
+      
+      // Text-to-speech for question
+      if ('speechSynthesis' in window) {
+        const utterance = new SpeechSynthesisUtterance(questionText);
+        utterance.rate = 0.9;
+        utterance.pitch = 1;
+        utterance.volume = 1;
+        speechSynthesis.speak(utterance);
+      }
       
       const typingInterval = setInterval(() => {
         if (index < questionText.length) {
@@ -23,7 +33,12 @@ function AIQuestionPanel({ currentQuestion, questionNumber, totalQuestions, isIn
         }
       }, 30);
 
-      return () => clearInterval(typingInterval);
+      return () => {
+        clearInterval(typingInterval);
+        if ('speechSynthesis' in window) {
+          speechSynthesis.cancel();
+        }
+      };
     }
   }, [currentQuestion, isInterviewActive]);
 
@@ -73,9 +88,9 @@ function AIQuestionPanel({ currentQuestion, questionNumber, totalQuestions, isIn
             <button 
               className="skip-question-btn"
               onClick={onSkipQuestion}
-              title="Skip this question"
+              title="Move to next question"
             >
-              Skip Question →
+              Next Question →
             </button>
           )}
           <span 

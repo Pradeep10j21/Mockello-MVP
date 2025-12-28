@@ -10,98 +10,123 @@ function ResultPage() {
   const [selectedTab, setSelectedTab] = useState('overview');
 
   useEffect(() => {
-    if (location.state && location.state.results) {
-      setResults(location.state.results);
-    } else {
-      // Use mock data for demonstration
-      const mockResults = {
-        overallScore: 78,
-        skillBreakdown: {
-          communication: 82,
-          confidence: 75,
-          technicalClarity: 77
-        },
-        strengths: [
-          'Excellent communication skills with clear articulation',
-          'Strong technical knowledge demonstrated in answers',
-          'Good use of specific examples from experience',
-          'Confident delivery and professional tone',
-          'Well-structured responses with logical flow',
-          'Appropriate answer length and depth'
-        ],
-        improvements: [
-          'Work on building more confidence in technical explanations',
-          'Practice handling complex technical questions with more detail',
-          'Focus on time management during longer answers',
-          'Enhance body language and non-verbal communication',
-          'Prepare more industry-specific examples',
-          'Practice handling behavioral questions more effectively'
-        ],
-        suggestions: [
-          'Record practice interviews and review your performance',
-          'Join mock interview sessions with peers',
-          'Study common technical interview questions',
-          'Practice explaining complex concepts simply',
-          'Work on your elevator pitch and personal introduction',
-          'Research the company and role thoroughly before interviews'
-        ],
-        answers: [
-          {
-            question: 'Tell me about yourself and your background.',
-            answer: 'I am a software engineering student with 2 years of experience in web development. I have worked on various projects using React, Node.js, and Python. I am passionate about creating user-friendly applications and solving complex problems. My goal is to become a full-stack developer and contribute to innovative projects.',
-            analysis: {
-              communication: 85,
-              confidence: 80,
-              technicalClarity: 75,
-              length: 120
-            }
-          },
-          {
-            question: 'What are your strengths and weaknesses?',
-            answer: 'My strengths include problem-solving skills, attention to detail, and ability to learn new technologies quickly. I am proficient in JavaScript, React, and database management. My weakness is that I sometimes get too focused on details and might spend too much time perfecting small features. I am working on improving my time management skills.',
-            analysis: {
-              communication: 80,
-              confidence: 78,
-              technicalClarity: 82,
-              length: 95
-            }
-          },
-          {
-            question: 'Why do you want to work for our company?',
-            answer: 'I am impressed by your company\'s innovative approach to technology and commitment to user experience. Your recent projects in AI and machine learning align perfectly with my interests. I believe my skills in full-stack development would be valuable to your team, and I am excited about the opportunity to work on cutting-edge technologies.',
-            analysis: {
-              communication: 88,
-              confidence: 82,
-              technicalClarity: 70,
-              length: 85
-            }
-          },
-          {
-            question: 'Describe a challenging project you worked on.',
-            answer: 'I worked on an e-commerce platform using MERN stack. The challenge was implementing real-time inventory management. I designed a system that updates inventory instantly across multiple user sessions using WebSocket connections and MongoDB change streams. This required careful handling of concurrent updates and optimistic locking to prevent race conditions.',
-            analysis: {
-              communication: 78,
-              confidence: 72,
-              technicalClarity: 85,
-              length: 78
-            }
-          },
-          {
-            question: 'Where do you see yourself in 5 years?',
-            answer: 'In 5 years, I see myself as a senior software engineer leading development teams and mentoring junior developers. I want to specialize in scalable system architecture and cloud technologies. I am also interested in pursuing leadership roles where I can contribute to technical decisions and product strategy.',
-            analysis: {
-              communication: 82,
-              confidence: 76,
-              technicalClarity: 75,
-              length: 70
-            }
+    // Always use mock data for demonstration
+    const mockResults = location.state?.results || {
+      overallScore: 78,
+      skillBreakdown: {
+        communication: 82,
+        confidence: 75,
+        technicalClarity: 77
+      },
+      strengths: [
+        'Excellent communication skills with clear articulation',
+        'Strong technical knowledge demonstrated in answers',
+        'Good use of specific examples from experience',
+        'Confident delivery and professional tone',
+        'Well-structured responses with logical flow',
+        'Appropriate answer length and depth'
+      ],
+      improvements: [
+        'Work on building more confidence in technical explanations',
+        'Practice handling complex technical questions with more detail',
+        'Focus on time management during longer answers',
+        'Enhance body language and non-verbal communication',
+        'Prepare more industry-specific examples',
+        'Practice handling behavioral questions more effectively'
+      ],
+      suggestions: [
+        'Record practice interviews and review your performance',
+        'Join mock interview sessions with peers',
+        'Study common technical interview questions',
+        'Practice explaining complex concepts simply',
+        'Work on your elevator pitch and personal introduction',
+        'Research the company and role thoroughly before interviews'
+      ],
+      answers: [
+        {
+          question: 'Tell me about yourself and your background.',
+          answer: 'I am a software engineering student with 2 years of experience in web development. I have worked on various projects using React, Node.js, and Python. I am passionate about creating user-friendly applications and solving complex problems. My goal is to become a full-stack developer and contribute to innovative projects.',
+          analysis: {
+            communication: 85,
+            confidence: 80,
+            technicalClarity: 75,
+            length: 120
           }
-        ]
-      };
-      setResults(mockResults);
-      navigate('/interview');
-    }
-  }, [location, navigate]);
+        },
+        {
+          question: 'What are your strengths and weaknesses?',
+          answer: 'My strengths include problem-solving skills, attention to detail, and ability to learn new technologies quickly. I am proficient in JavaScript, React, and database management. My weakness is that I sometimes get too focused on details and might spend too much time perfecting small features. I am working on improving my time management skills.',
+          analysis: {
+            communication: 80,
+            confidence: 78,
+            technicalClarity: 82,
+            length: 95
+          }
+        },
+        {
+          question: 'Why do you want to work for our company?',
+          answer: 'I am impressed by your company\'s innovative approach to technology and commitment to user experience. Your recent projects in AI and machine learning align perfectly with my interests. I believe my skills in full-stack development would be valuable to your team, and I am excited about the opportunity to work on cutting-edge technologies.',
+          analysis: {
+            communication: 88,
+            confidence: 82,
+            technicalClarity: 70,
+            length: 85
+          }
+        },
+        {
+          question: 'Describe a challenging project you worked on.',
+          answer: 'I worked on an e-commerce platform using MERN stack. The challenge was implementing real-time inventory management. I designed a system that updates inventory instantly across multiple user sessions using WebSocket connections and MongoDB change streams. This required careful handling of concurrent updates and optimistic locking to prevent race conditions.',
+          analysis: {
+            communication: 78,
+            confidence: 72,
+            technicalClarity: 85,
+            length: 78
+          }
+        },
+        {
+          question: 'Where do you see yourself in 5 years?',
+          answer: 'In 5 years, I see myself as a senior software engineer leading development teams and mentoring junior developers. I want to specialize in scalable system architecture and cloud technologies. I am also interested in pursuing leadership roles where I can contribute to technical decisions and product strategy.',
+          analysis: {
+            communication: 82,
+            confidence: 76,
+            technicalClarity: 75,
+            length: 70
+          }
+        },
+        {
+          question: 'How do you handle tight deadlines?',
+          answer: 'I prioritize tasks based on urgency and importance, break down complex problems into smaller manageable chunks, and communicate proactively with team members about progress and potential blockers. I also use time management techniques like the Pomodoro method to maintain focus and productivity.',
+          analysis: {
+            communication: 83,
+            confidence: 79,
+            technicalClarity: 77,
+            length: 88
+          }
+        },
+        {
+          question: 'Explain a technical concept to a non-technical person.',
+          answer: 'I would use analogies and simple language. For example, if explaining APIs, I might compare them to a restaurant menu - you see what\'s available, place an order, and receive your food. Similarly, an API shows available functions, you request data, and receive it back.',
+          analysis: {
+            communication: 90,
+            confidence: 81,
+            technicalClarity: 88,
+            length: 92
+          }
+        },
+        {
+          question: 'What is your approach to debugging?',
+          answer: 'I start by reproducing the issue consistently, then check logs and error messages. I use systematic debugging techniques like adding breakpoints, checking variable states, and isolating the problem area. I also review recent code changes and test edge cases.',
+          analysis: {
+            communication: 79,
+            confidence: 74,
+            technicalClarity: 86,
+            length: 76
+          }
+        }
+      ]
+    };
+    setResults(mockResults);
+  }, [location]);
 
   useEffect(() => {
     if (results) {
@@ -596,7 +621,7 @@ function ResultPage() {
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                 <path d="M10 2L3 7v11h14V7l-7-5z" stroke="currentColor" strokeWidth="2" fill="none"/>
               </svg>
-              {isSelected ? 'Hire Candidate' : 'Review Later'}
+              {isSelected ? 'Hire Candidate' : 'Proceed with the next'}
             </button>
           </div>
         </div>

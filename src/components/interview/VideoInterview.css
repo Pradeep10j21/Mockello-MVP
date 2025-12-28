@@ -178,37 +178,14 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  background-color: var(--bg-card);
+  background-color: white;
   border-radius: 16px;
-  padding: 20px;
+  padding: 0;
   border: 2px solid var(--green-light);
-  min-height: 320px;
-  overflow: visible;
+  min-height: 400px;
+  overflow: hidden;
   box-shadow: 0 4px 16px rgba(15, 44, 31, 0.1);
-}
-
-.transcript-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 12px;
-  flex-shrink: 0;
-}
-
-.transcript-section h3 {
-  color: var(--green-primary);
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin: 0;
-}
-
-.transcript-wrapper {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  overflow: visible;
-  min-height: 300px;
-  margin-bottom: 10px;
+  position: relative;
 }
 
 
@@ -241,21 +218,22 @@
 
 .transcript-textarea {
   width: 100%;
-  padding: 20px;
-  border: 2px solid var(--green-soft);
-  border-radius: 12px;
+  padding: 25px;
+  border: none;
+  border-radius: 16px;
   background-color: white;
   color: var(--green-primary);
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   font-family: inherit;
-  line-height: 2.1;
+  line-height: 2.2;
   resize: none;
   overflow-y: scroll;
   overflow-x: hidden;
   flex: 1;
-  min-height: 260px;
+  min-height: 400px;
   transition: all 0.3s ease;
   display: block;
+  outline: none;
 }
 
 .transcript-textarea::-webkit-scrollbar {
@@ -293,18 +271,27 @@
 }
 
 .transcript-textarea::placeholder {
-  color: var(--green-muted);
+  color: #0F2C1F;
+  opacity: 0.6;
 }
 
 .transcript-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 8px;
-  padding-top: 10px;
+  padding: 12px 20px;
   border-top: 2px solid var(--green-light);
   font-size: 0.85rem;
   flex-shrink: 0;
+  background-color: var(--bg-card);
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+}
+
+.transcript-footer-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
 .word-count {

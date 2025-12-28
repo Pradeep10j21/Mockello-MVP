@@ -30,6 +30,7 @@ import CompanyDashboard from "./pages/company/CompanyDashboard";
 import CompanyProfile from "./pages/company/CompanyProfile";
 import CompanyJobCriteria from "./pages/company/CompanyJobCriteria";
 import CompanyColleges from "./pages/company/CompanyColleges";
+import CollegeDetail from "./pages/company/CollegeDetail";
 import CompanyUpdates from "./pages/company/CompanyUpdates";
 
 // Student Module
@@ -54,6 +55,7 @@ import GDRoom from "./pages/gd-room/GDRoom";
 import GDResult from "./pages/gd-room/GDResult";
 
 // Interview Module
+import InterviewLandingPage from "./pages/interview/InterviewLandingPage";
 import CompanySelection from "./pages/interview/CompanySelection";
 import InterviewPage from "./pages/interview/InterviewPage";
 import ResultPage from "./pages/interview/ResultPage";
@@ -94,6 +96,7 @@ const App = () => (
           <Route path="/company/profile" element={<CompanyProfile />} />
           <Route path="/company/criteria" element={<CompanyJobCriteria />} />
           <Route path="/company/colleges" element={<CompanyColleges />} />
+          <Route path="/company/college/:id" element={<CollegeDetail />} />
           <Route path="/company/updates" element={<CompanyUpdates />} />
 
           {/* Student Portal Routes */}
@@ -119,7 +122,8 @@ const App = () => (
           <Route path="/gd-portal/result" element={<GDResult />} />
 
           {/* Interview Routes */}
-          <Route path="/interview" element={<CompanySelection />} />
+          <Route path="/interview" element={<InterviewLandingPage />} />
+          <Route path="/interview/select" element={<CompanySelection />} />
           <Route path="/interview/:companyId" element={<InterviewPage />} />
           <Route path="/interview/result" element={<ResultPage />} />
 
