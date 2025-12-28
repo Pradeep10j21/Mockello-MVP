@@ -70,7 +70,7 @@ const steps = [
   },
 ];
 
-const GenzStepsSection = () => {
+const MockelloStepsSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
 
@@ -182,4 +182,4 @@ const GenzStepsSection = () => {
   );
 };
 
-export default GenzStepsSection;
+export default MockelloStepsSection;

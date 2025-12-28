@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { Mail, Phone, MapPin, GraduationCap } from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
+import MockelloLogo from "./MockelloLogo";
 
 const StudentFooter = () => {
   return (
@@ -8,12 +9,7 @@ const StudentFooter = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {/* Brand */}
           <div className="space-y-4">
-            <div className="flex items-center gap-2">
-              <div className="w-10 h-10 rounded-xl bg-primary-foreground/20 flex items-center justify-center">
-                <GraduationCap className="w-5 h-5" />
-              </div>
-              <span className="text-xl font-serif font-semibold">StudentHub</span>
-            </div>
+            <MockelloLogo size="sm" />
             <p className="text-primary-foreground/80 leading-relaxed">
               Empowering students to find the perfect career opportunities. Your journey to success starts here.
             </p>

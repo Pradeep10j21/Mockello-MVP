@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { AlertTriangle, BookOpen, Brain, Clock, RotateCcw, CheckCircle, XCircle, Zap } from "lucide-react";
 
-const GenzProblemStatement = () => {
+const MockelloProblemStatement = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
 
@@ -153,4 +153,4 @@ const GenzProblemStatement = () => {
   );
 };
 
-export default GenzProblemStatement;
+export default MockelloProblemStatement;

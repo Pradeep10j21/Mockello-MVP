@@ -1,7 +1,7 @@
 import { Github, Twitter, Linkedin, Instagram } from "lucide-react";
 import { Link } from "react-router-dom";
 
-const GenzPlacifyFooter = () => {
+const MockelloFooter = () => {
   const footerLinks = {
     Product: ["Features", "Pricing", "Companies", "Success Stories"],
     Resources: ["Blog", "Documentation", "Support", "FAQ"],
@@ -23,11 +23,11 @@ const GenzPlacifyFooter = () => {
           {/* Logo & Description */}
           <div className="col-span-2 md:col-span-1">
             <Link to="/mock-placement" className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-xl">G</span>
+              <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center overflow-hidden">
+                <img src="/logo.png" alt="Mockello Logo" className="w-8 h-8 object-contain" />
               </div>
               <span className="font-serif font-bold text-lg text-foreground">
-                GENZ <span className="text-secondary">PLACIFY</span>
+                Mockello
               </span>
             </Link>
             <p className="text-sm text-muted-foreground mb-4">
@@ -77,4 +77,4 @@ const GenzPlacifyFooter = () => {
   );
 };
 
-export default GenzPlacifyFooter;
+export default MockelloFooter;

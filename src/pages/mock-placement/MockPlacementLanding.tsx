@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { ArrowRight, Play, Code, BarChart3, Terminal, Zap, BookOpen, Target, TrendingUp, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate, Link } from "react-router-dom";
+import MockelloLogo from "@/components/MockelloLogo";
 
 const rotatingWords = ["Test", "Compete", "Succeed", "Get Placed"];
 
@@ -72,12 +73,7 @@ const MockPlacementLanding = () => {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16 md:h-20">
             <Link to="/student/dashboard" className="flex items-center gap-2">
-              <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-xl">G</span>
-              </div>
-              <span className="font-serif font-bold text-xl text-foreground">
-                GENZ <span className="text-secondary">PLACIFY</span>
-              </span>
+              <MockelloLogo size="sm" />
             </Link>
             <div className="flex items-center gap-4">
               <Link to="/student/dashboard" className="text-muted-foreground hover:text-foreground transition-colors">
@@ -134,7 +130,7 @@ const MockPlacementLanding = () => {
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}
           >
-            Where Aptitude Meets
+            Mockello: Where Aptitude Meets
             <br />
             <span className="text-gradient-forest">Opportunity</span>
           </h1>
@@ -238,6 +234,60 @@ const MockPlacementLanding = () => {
                     {feature.description}
                   </p>
                 </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works */}
+      <section className="py-20 px-6 bg-muted/30">
+        <div className="container mx-auto max-w-4xl">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-serif font-bold mb-4">
+              How It Works
+            </h2>
+          </div>
+
+          <div className="space-y-8">
+            {[
+              { step: "01", title: "Start Your Assessment", description: "Begin the aptitude test with company-specific questions designed for real placements." },
+              { step: "02", title: "Answer & Learn", description: "Answer questions and get instant feedback. Learn from mistakes with detailed explanations." },
+              { step: "03", title: "Track Progress", description: "Monitor your performance across different topics and difficulty levels." },
+              { step: "04", title: "Get Results", description: "Receive comprehensive results and recommendations to improve your placement chances." },
+            ].map((item, idx) => (
+              <div key={idx} className="flex gap-6 items-start animate-fade-in" style={{ animationDelay: `${idx * 0.1}s` }}>
+                <div className="w-16 h-16 rounded-2xl bg-primary text-primary-foreground flex items-center justify-center font-serif font-bold text-xl shrink-0">
+                  {item.step}
+                </div>
+                <div className="pt-2">
+                  <h3 className="font-serif text-xl font-semibold mb-2">{item.title}</h3>
+                  <p className="text-muted-foreground">{item.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Partner Companies */}
+      <section className="py-20 px-6">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-serif font-bold mb-4">
+              Trusted by <span className="text-gradient-forest">Top Companies</span>
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Our platform is designed with input from leading companies to ensure you get the most relevant preparation.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center">
+            {[
+              "TechCorp", "DataFlow", "CloudNine", "AI Dynamics", "FinTech Pro", "InnovateLabs"
+            ].map((company, index) => (
+              <div key={index} className="flex items-center justify-center p-4 rounded-lg bg-card border border-border hover:shadow-md transition-shadow">
+                <span className="text-lg font-semibold text-muted-foreground">{company}</span>
               </div>
             ))}
           </div>

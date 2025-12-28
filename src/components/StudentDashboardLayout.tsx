@@ -8,8 +8,7 @@ import {
   Bell,
   LogOut,
   ChevronLeft,
-  ChevronRight,
-  GraduationCap
+  ChevronRight
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -22,6 +21,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import MockelloLogo from "./MockelloLogo";
 
 interface NavItem {
   icon: ReactNode;
@@ -61,11 +61,11 @@ const StudentDashboardLayout = ({ children }: StudentDashboardLayoutProps) => {
         {/* Logo */}
         <div className="p-6 flex items-center justify-between border-b border-sidebar-border">
           <Link to="/student/dashboard" className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-sidebar-accent flex items-center justify-center shrink-0">
-              <GraduationCap className="w-5 h-5 text-sidebar-primary" />
-            </div>
-            {!collapsed && (
-              <span className="font-serif font-semibold text-lg">StudentHub</span>
+            {!collapsed && <MockelloLogo size="sm" />}
+            {collapsed && (
+              <div className="w-10 h-10 rounded-xl bg-sidebar-accent flex items-center justify-center shrink-0">
+                <img src="/logo.png" alt="Mockello" className="w-6 h-6 object-contain" />
+              </div>
             )}
           </Link>
         </div>

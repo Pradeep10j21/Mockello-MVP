@@ -15,6 +15,7 @@ const MockPlacementAssessment = () => {
   const [feedbackState, setFeedbackState] = useState<FeedbackState>('none');
   const [userAnswers, setUserAnswers] = useState<UserAnswer[]>([]);
   const [seconds, setSeconds] = useState(0);
+  const [timerId, setTimerId] = useState<NodeJS.Timeout | null>(null);
   const [showTabWarning, setShowTabWarning] = useState(false);
 
   // Tab switch warning
@@ -42,10 +43,22 @@ const MockPlacementAssessment = () => {
 
   const currentQuestion = questions[currentQuestionIndex];
 
+  const startTimer = () => {
+    if (timerId) return;
+    const id = setInterval(() => setSeconds(s => s + 1), 1000);
+    setTimerId(id);
+  };
+
+  const stopTimer = () => {
+    if (timerId) {
+      clearInterval(timerId);
+      setTimerId(null);
+    }
+  };
+
   const handleStartAssessment = () => {
     setPhase('assessment');
-    const timer = setInterval(() => setSeconds(s => s + 1), 1000);
-    return () => clearInterval(timer);
+    startTimer();
   };
 
   const handleSelectAnswer = (index: number) => {
@@ -67,10 +80,15 @@ const MockPlacementAssessment = () => {
     }]);
     
     setFeedbackState(isCorrect ? 'correct' : 'incorrect');
+    if (!isCorrect) {
+      stopTimer();
+    }
   };
 
   const handleContinue = () => {
+    startTimer();
     if (currentQuestionIndex + 1 >= questions.length) {
+      stopTimer();
       // Navigate to results page with assessment data
       const result = {
         accuracy,
@@ -103,6 +121,7 @@ const MockPlacementAssessment = () => {
   };
 
   const handleRetake = () => {
+    stopTimer();
     setPhase('welcome');
     setCurrentQuestionIndex(0);
     setSelectedAnswer(null);

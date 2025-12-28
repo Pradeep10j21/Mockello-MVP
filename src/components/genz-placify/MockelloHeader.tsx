@@ -34,8 +34,8 @@ const GenzPlacifyHeader = () => {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link to="/mock-placement" className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-xl">G</span>
+            <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center overflow-hidden">
+              <img src="/logo.png" alt="Mockello Logo" className="w-8 h-8 object-contain" />
             </div>
             <span className="font-serif font-bold text-xl text-foreground">
               Mockello
@@ -108,4 +108,4 @@ const GenzPlacifyHeader = () => {
   );
 };
 
-export default GenzPlacifyHeader;
+export default MockelloHeader;

@@ -25,7 +25,7 @@ const FloatingElement = ({
   </div>
 );
 
-const GenzHeroSection = () => {
+const MockelloHeroSection = () => {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -185,4 +185,4 @@ const GenzHeroSection = () => {
   );
 };
 
-export default GenzHeroSection;
+export default MockelloHeroSection;
