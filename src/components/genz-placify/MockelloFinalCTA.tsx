@@ -18,7 +18,7 @@ const colleges = [
   "IIIT Hyderabad",
 ];
 
-const GenzFinalCTA = () => {
+const MockelloFinalCTA = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
 
@@ -139,4 +139,4 @@ const GenzFinalCTA = () => {
   );
 };
 
-export default GenzFinalCTA;
+export default MockelloFinalCTA;

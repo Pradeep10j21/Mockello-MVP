@@ -53,7 +53,7 @@ const features = [
   },
 ];
 
-const GenzFeaturesSection = () => {
+const MockelloFeaturesSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
 
@@ -130,4 +130,4 @@ const GenzFeaturesSection = () => {
   );
 };
 
-export default GenzFeaturesSection;
+export default MockelloFeaturesSection;

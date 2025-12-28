@@ -44,7 +44,7 @@ import StudentApplicationsPage from "./pages/student/StudentApplicationsPage";
 import StudentProfilePage from "./pages/student/StudentProfilePage";
 
 // Mock Placement Module
-import GenzPlacifyLanding from "./pages/mock-placement/GenzPlacifyLanding";
+import MockelloLanding from "./pages/mock-placement/MockelloLanding";
 import MockPlacementAssessment from "./pages/mock-placement/MockPlacementAssessment";
 import MockPlacementResults from "./pages/mock-placement/MockPlacementResults";
 
@@ -111,7 +111,7 @@ const App = () => (
           <Route path="/student/profile" element={<StudentProfilePage />} />
 
           {/* Mock Placement Routes */}
-          <Route path="/mock-placement" element={<GenzPlacifyLanding />} />
+          <Route path="/mock-placement" element={<MockelloLanding />} />
           <Route path="/mock-placement/assessment" element={<MockPlacementAssessment />} />
           <Route path="/mock-placement/results" element={<MockPlacementResults />} />
 

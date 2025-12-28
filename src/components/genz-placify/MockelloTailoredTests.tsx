@@ -53,7 +53,7 @@ const categories = [
   },
 ];
 
-const GenzTailoredTests = () => {
+const MockelloTailoredTests = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
 
@@ -134,4 +134,4 @@ const GenzTailoredTests = () => {
   );
 };
 
-export default GenzTailoredTests;
+export default MockelloTailoredTests;
