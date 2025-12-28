@@ -70,7 +70,7 @@ const GenzFinalCTA = () => {
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
-            Join thousands of students who transformed their placement journey with GENZ PLACIFY
+            Join thousands of students who transformed their placement journey with Mockello
           </p>
 
           {/* CTA Buttons */}

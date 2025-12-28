@@ -24,10 +24,10 @@ const AdminLogin = () => {
         
         <div className="relative z-10">
           <Link to="/" className="flex items-center gap-3 mb-12">
-            <div className="w-12 h-12 rounded-xl bg-gold flex items-center justify-center">
-              <Leaf className="w-7 h-7 text-bark" />
+            <div className="w-12 h-12 rounded-xl bg-transparent flex items-center justify-center overflow-hidden">
+              <img src="/logo.png" alt="Mockello Logo" className="w-full h-full object-contain" />
             </div>
-            <span className="font-display text-2xl font-semibold">Genz Placify
+            <span className="font-display text-2xl font-semibold">Mockello
           </span>
           </Link>
           

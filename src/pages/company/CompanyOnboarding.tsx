@@ -258,7 +258,7 @@ const CompanyOnboarding = () => {
       setIsLoading(false);
       toast({
         title: "Registration Complete!",
-        description: "Welcome to GenZ Placify. Your company profile is now active.",
+        description: "Welcome to Mockello. Your company profile is now active.",
       });
       navigate("/company/dashboard");
     }, 1500);

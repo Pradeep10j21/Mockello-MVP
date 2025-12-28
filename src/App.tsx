@@ -45,6 +45,18 @@ import StudentProfilePage from "./pages/student/StudentProfilePage";
 // Mock Placement Module
 import GenzPlacifyLanding from "./pages/mock-placement/GenzPlacifyLanding";
 import MockPlacementAssessment from "./pages/mock-placement/MockPlacementAssessment";
+import MockPlacementResults from "./pages/mock-placement/MockPlacementResults";
+
+// GD Room Module
+import GDPortal from "./pages/gd-room/GDPortal";
+import WaitingRoom from "./pages/gd-room/WaitingRoom";
+import GDRoom from "./pages/gd-room/GDRoom";
+import GDResult from "./pages/gd-room/GDResult";
+
+// Interview Module
+import CompanySelection from "./pages/interview/CompanySelection";
+import InterviewPage from "./pages/interview/InterviewPage";
+import ResultPage from "./pages/interview/ResultPage";
 
 const queryClient = new QueryClient();
 
@@ -98,6 +110,18 @@ const App = () => (
           {/* Mock Placement Routes */}
           <Route path="/mock-placement" element={<GenzPlacifyLanding />} />
           <Route path="/mock-placement/assessment" element={<MockPlacementAssessment />} />
+          <Route path="/mock-placement/results" element={<MockPlacementResults />} />
+
+          {/* GD Room Routes */}
+          <Route path="/gd-portal" element={<GDPortal />} />
+          <Route path="/gd-portal/waiting-room" element={<WaitingRoom />} />
+          <Route path="/gd-portal/gd-room" element={<GDRoom />} />
+          <Route path="/gd-portal/result" element={<GDResult />} />
+
+          {/* Interview Routes */}
+          <Route path="/interview" element={<CompanySelection />} />
+          <Route path="/interview/:companyId" element={<InterviewPage />} />
+          <Route path="/interview/result" element={<ResultPage />} />
 
           {/* Catch-all */}
           <Route path="*" element={<NotFound />} />

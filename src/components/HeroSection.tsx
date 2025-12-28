@@ -25,13 +25,6 @@ const HeroSection = () => {
       variant: "student" as const,
       description: "Explore careers",
     },
-    {
-      title: "Super Admin",
-      icon: Shield,
-      path: "/admin/login",
-      variant: "admin" as const,
-      description: "Platform control",
-    },
   ];
 
   return (
@@ -62,7 +55,7 @@ const HeroSection = () => {
           </p>
 
           {/* CTA Buttons Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto animate-fade-up" style={{ animationDelay: "0.3s" }}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto animate-fade-up" style={{ animationDelay: "0.3s" }}>
             {loginOptions.map((option, index) => (
               <Link
                 key={option.path}

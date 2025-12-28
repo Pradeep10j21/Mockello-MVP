@@ -69,7 +69,7 @@ const GenzPlacifyFooter = () => {
         {/* Copyright */}
         <div className="mt-12 pt-8 border-t border-border text-center">
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} GENZ PLACIFY. All rights reserved.
+            © {new Date().getFullYear()} Mockello. All rights reserved.
           </p>
         </div>
       </div>

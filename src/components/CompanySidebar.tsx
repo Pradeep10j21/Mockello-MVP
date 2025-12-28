@@ -43,10 +43,10 @@ const CompanySidebar = ({ children }: CompanySidebarProps) => {
       {/* Mobile Header */}
       <div className="lg:hidden fixed top-0 left-0 right-0 h-16 bg-card border-b border-border flex items-center justify-between px-4 z-50">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-forest-medium flex items-center justify-center">
-            <Leaf className="w-5 h-5 text-primary-foreground" />
+          <div className="w-8 h-8 rounded-lg bg-transparent flex items-center justify-center overflow-hidden">
+            <img src="/logo.png" alt="Mockello Logo" className="w-full h-full object-contain" />
           </div>
-          <span className="font-display font-bold text-foreground">GenZ Placify</span>
+          <span className="font-display font-bold text-foreground">Mockello</span>
         </div>
         <Button
           variant="ghost"
@@ -77,10 +77,10 @@ const CompanySidebar = ({ children }: CompanySidebarProps) => {
         <div className="h-16 flex items-center justify-between px-4 border-b border-border">
           {!collapsed && (
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-forest-medium flex items-center justify-center">
-                <Leaf className="w-5 h-5 text-primary-foreground" />
+              <div className="w-8 h-8 rounded-lg bg-transparent flex items-center justify-center overflow-hidden">
+                <img src="/logo.png" alt="Mockello Logo" className="w-full h-full object-contain" />
               </div>
-              <span className="font-display font-bold text-foreground">GenZ Placify</span>
+              <span className="font-display font-bold text-foreground">Mockello</span>
             </div>
           )}
           <Button

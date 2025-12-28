@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ArrowRight, Clock, CheckCircle, Lightbulb, Brain, Sparkles, RefreshCw, Trophy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { questions, getCategoryLabel, getDifficultyColor } from '@/data/questions';
@@ -7,6 +7,7 @@ import { AssessmentPhase, FeedbackState, UserAnswer } from '@/types/assessment';
 import LearningMode from '@/components/assessment/LearningMode';
 
 const MockPlacementAssessment = () => {
+  const navigate = useNavigate();
   const [phase, setPhase] = useState<AssessmentPhase>('welcome');
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
@@ -45,7 +46,30 @@ const MockPlacementAssessment = () => {
 
   const handleContinue = () => {
     if (currentQuestionIndex + 1 >= questions.length) {
-      setPhase('summary');
+      // Navigate to results page with assessment data
+      const result = {
+        accuracy,
+        totalQuestions: questions.length,
+        correctAnswers,
+        timeSpent: seconds,
+        categoryBreakdown: questions.reduce((acc, q, idx) => {
+          const category = q.category;
+          const isCorrect = userAnswers.find(a => a.questionId === q.id)?.isCorrect || false;
+          if (!acc[category]) acc[category] = { correct: 0, total: 0 };
+          acc[category].total++;
+          if (isCorrect) acc[category].correct++;
+          return acc;
+        }, {} as { [key: string]: { correct: number; total: number } }),
+        difficultyBreakdown: questions.reduce((acc, q, idx) => {
+          const difficulty = q.difficulty;
+          const isCorrect = userAnswers.find(a => a.questionId === q.id)?.isCorrect || false;
+          if (!acc[difficulty]) acc[difficulty] = { correct: 0, total: 0 };
+          acc[difficulty].total++;
+          if (isCorrect) acc[difficulty].correct++;
+          return acc;
+        }, {} as { [key: string]: { correct: number; total: number } })
+      };
+      navigate('/mock-placement/results', { state: { result } });
     } else {
       setCurrentQuestionIndex(prev => prev + 1);
       setSelectedAnswer(null);

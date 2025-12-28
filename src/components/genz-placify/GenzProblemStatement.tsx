@@ -134,7 +134,7 @@ const GenzProblemStatement = () => {
         <div className={`text-center transition-all duration-700 delay-400 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-accent/20 border border-accent/30">
             <Zap className="w-6 h-6 text-accent" />
-            <span className="text-lg font-bold text-accent">GENZ PLACIFY is the patch.</span>
+            <span className="text-lg font-bold text-accent">Mockello is the patch.</span>
           </div>
 
           <p className="max-w-3xl mx-auto mt-8 text-primary-foreground/80 text-lg leading-relaxed">

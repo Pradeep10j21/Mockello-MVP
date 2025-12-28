@@ -32,10 +32,10 @@ const CollegeSidebar = ({
       {/* Logo */}
       <div className="p-4 border-b border-sidebar-border">
         <Link to="/college/dashboard" className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-sage flex items-center justify-center flex-shrink-0">
-            <Leaf className="w-6 h-6 text-forest-deep" />
+          <div className="w-10 h-10 rounded-xl bg-transparent flex items-center justify-center flex-shrink-0 overflow-hidden">
+            <img src="/logo.png" alt="Mockello Logo" className="w-full h-full object-contain" />
           </div>
-          {!collapsed && <span className="font-display text-lg font-semibold">Genz Placify
+          {!collapsed && <span className="font-display text-lg font-semibold">Mockello
         </span>}
         </Link>
       </div>

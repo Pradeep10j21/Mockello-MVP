@@ -51,6 +51,7 @@
     --earth: 35 40% 45%;
     --earth-light: 40 45% 85%;
     --gold: 35 60% 55%;
+    --gold-warm: 35 55% 55%;
     --gold-light: 40 70% 92%;
     --cream: 45 50% 96%;
     --bark: 25 30% 25%;
@@ -67,7 +68,13 @@
     --shadow-soft: 0 4px 20px -4px hsl(153 45% 18% / 0.15);
     --shadow-medium: 0 8px 30px -6px hsl(153 45% 18% / 0.2);
     --shadow-glow: 0 0 40px hsl(145 35% 65% / 0.3);
+    --shadow-glow-gold: 0 0 40px hsl(35 60% 55% / 0.5);
     --shadow-card: 0 2px 12px -2px hsl(153 45% 18% / 0.1);
+    --shadow-elevated: 0 8px 30px -8px hsl(155 50% 12% / 0.15);
+    
+    /* Green Room additional colors */
+    --soft: 135 20% 80%;
+    --soft-foreground: 155 50% 12%;
 
     /* Sidebar */
     --sidebar-background: 153 45% 18%;
@@ -78,6 +85,15 @@
     --sidebar-accent-foreground: 85 30% 96%;
     --sidebar-border: 152 44% 25%;
     --sidebar-ring: 145 35% 65%;
+
+    /* Interview-bot theme variables */
+    --bg-main: #F2F6F0;
+    --bg-card: #E9F2EB;
+    --green-primary: #0F2C1F;
+    --green-dark: #39634E;
+    --green-muted: #779083;
+    --green-soft: #A3BAAC;
+    --green-light: #CCDBD0;
   }
 
   .dark {
@@ -101,6 +117,10 @@
 
     --accent: 35 60% 55%;
     --accent-foreground: 153 50% 10%;
+    
+    /* Green Room additional colors for dark mode */
+    --soft: 135 20% 30%;
+    --soft-foreground: 100 25% 95%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 100%;
@@ -153,6 +173,11 @@
 
   .btn-gold {
     @apply bg-accent text-accent-foreground hover:opacity-90 transition-all duration-300;
+    box-shadow: var(--shadow-glow-gold);
+  }
+
+  .shadow-glow-gold {
+    box-shadow: var(--shadow-glow-gold);
   }
 
   .btn-outline-forest {
@@ -192,6 +217,12 @@
     @apply backdrop-blur-md;
     background: hsl(var(--card) / 0.8);
     border: 1px solid hsl(var(--border) / 0.5);
+  }
+
+  .glass-bubble {
+    @apply backdrop-blur-md;
+    background: hsl(var(--card) / 0.6);
+    border: 1px solid hsl(var(--border) / 0.4);
   }
 
   /* Leaf decoration */
@@ -264,6 +295,35 @@
 
   .animate-sway {
     animation: sway 4s ease-in-out infinite;
+  }
+
+  .animate-gradient-shift {
+    animation: gradientShift 8s ease infinite;
+    background-size: 400% 400%;
+  }
+
+  .animate-breathe {
+    animation: breathe 3s ease-in-out infinite;
+  }
+
+  .animate-shimmer {
+    animation: shimmer 2s linear infinite;
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite;
+  }
+
+  .animate-spin-leaf {
+    animation: spinLeaf 3s linear infinite;
+  }
+
+  .text-gold {
+    color: hsl(var(--gold));
+  }
+
+  .text-gold-warm {
+    color: hsl(var(--gold-warm));
   }
 
   /* Hover effects */
@@ -367,4 +427,159 @@
 @keyframes sway {
   0%, 100% { transform: rotate(-3deg); }
   50% { transform: rotate(3deg); }
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes glow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+@keyframes spinLeaf {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes leaf-fall {
+  0% {
+    transform: translateY(-10%) rotate(0deg);
+    opacity: 0;
+  }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Green Room Styles - Merged from green-room-insights */
+@layer components {
+  .card-elevated {
+    @apply bg-card rounded-2xl shadow-card transition-all duration-300;
+  }
+
+  .card-elevated:hover {
+    @apply shadow-elevated;
+  }
+
+  .participant-tile {
+    @apply relative bg-secondary rounded-2xl overflow-hidden transition-all duration-300;
+  }
+
+  .participant-tile.active-speaker {
+    @apply ring-2 ring-accent ring-offset-2 ring-offset-background;
+  }
+
+  .participant-tile.is-you {
+    @apply ring-2 ring-primary ring-offset-2 ring-offset-background;
+  }
+
+  .control-btn {
+    @apply flex items-center justify-center w-12 h-12 rounded-full bg-card hover:bg-accent/30 transition-all duration-200 text-foreground;
+  }
+
+  .control-btn.active {
+    @apply bg-destructive text-destructive-foreground hover:bg-destructive/90;
+  }
+
+  .control-btn.end-call {
+    @apply bg-destructive text-destructive-foreground hover:bg-destructive/90 px-6 w-auto;
+  }
+
+  .avatar-initial {
+    @apply flex items-center justify-center rounded-full bg-primary text-primary-foreground font-display font-semibold uppercase;
+  }
+
+  .transcript-message {
+    @apply p-3 rounded-xl bg-soft/30 animate-fade-in;
+  }
+
+  .transcript-message.is-you {
+    @apply bg-primary/10;
+  }
+}
+
+@layer utilities {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--muted)) transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--muted));
+    border-radius: 3px;
+  }
+}
+
+/* Green Room Animations */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+@keyframes reaction-pop {
+  0% {
+    transform: scale(0) translateY(20px);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2) translateY(-10px);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) translateY(-40px);
+    opacity: 0;
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-out forwards;
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-reaction {
+  animation: reaction-pop 2s ease-out forwards;
 }

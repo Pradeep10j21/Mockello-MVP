@@ -38,7 +38,7 @@ const GenzPlacifyHeader = () => {
               <span className="text-primary-foreground font-bold text-xl">G</span>
             </div>
             <span className="font-serif font-bold text-xl text-foreground">
-              GENZ <span className="text-secondary">PLACIFY</span>
+              Mockello
             </span>
           </Link>
 

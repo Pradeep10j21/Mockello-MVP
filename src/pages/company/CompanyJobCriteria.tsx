@@ -2,7 +2,7 @@ import { useState } from "react";
 import { 
   Plus, Edit, Trash2, ChevronDown, ChevronUp, Briefcase, Users, 
   GraduationCap, IndianRupee, MapPin, Clock, FileText, CheckCircle,
-  X, Building2, Award, Calendar, ClipboardList, FileCheck, MessageSquare
+  X, Building2, Award, Calendar, ClipboardList, FileCheck, MessageSquare, Search
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -28,6 +28,73 @@ const branches = [
   "BBA",
 ];
 
+const indianColleges = [
+  // IITs
+  "Indian Institute of Technology Bombay (IIT Bombay)",
+  "Indian Institute of Technology Delhi (IIT Delhi)",
+  "Indian Institute of Technology Madras (IIT Madras)",
+  "Indian Institute of Technology Kanpur (IIT Kanpur)",
+  "Indian Institute of Technology Kharagpur (IIT Kharagpur)",
+  "Indian Institute of Technology Roorkee (IIT Roorkee)",
+  "Indian Institute of Technology Guwahati (IIT Guwahati)",
+  "Indian Institute of Technology Hyderabad (IIT Hyderabad)",
+  // NITs
+  "National Institute of Technology Trichy (NIT Trichy)",
+  "National Institute of Technology Surathkal (NITK)",
+  "National Institute of Technology Warangal (NIT Warangal)",
+  // Tamil Nadu Colleges
+  "Vellore Institute of Technology (VIT Vellore)",
+  "SRM Institute of Science and Technology (SRM Chennai)",
+  "PSG College of Technology (PSG Tech)",
+  "Thiagarajar College of Engineering (TCE Madurai)",
+  "Amrita School of Engineering, Coimbatore",
+  "SSN College of Engineering, Chennai",
+  "Sri Venkateswara College of Engineering (SVCE Chennai)",
+  "Kongu Engineering College, Erode",
+  "St. Joseph's College of Engineering, Chennai",
+  "Velammal Engineering College, Chennai",
+  "Kumaraguru College of Technology, Coimbatore",
+  "Rajalakshmi Engineering College, Chennai",
+  "Sathyabama Institute of Science and Technology, Chennai",
+  "Saveetha Engineering College, Chennai",
+  "Vel Tech Rangarajan Dr. Sagunthala R&D Institute, Chennai",
+  "Jeppiaar Engineering College, Chennai",
+  "Mepco Schlenk Engineering College, Sivakasi",
+  "Hindustan Institute of Technology and Science, Chennai",
+  "Sri Sairam Engineering College, Chennai",
+  "RMK Engineering College, Chennai",
+  "Adhiyamaan College of Engineering, Hosur",
+  "Anna University, Chennai",
+  "Coimbatore Institute of Technology (CIT)",
+  "Government College of Technology (GCT Coimbatore)",
+  "National Institute of Technology Puducherry (NIT Puducherry)",
+  "Indian Institute of Information Technology Tiruchirappalli (IIIT Trichy)",
+  "Kalasalingam Academy of Research and Education, Srivilliputhur",
+  // Other Top Colleges
+  "Birla Institute of Technology and Science Pilani (BITS Pilani)",
+  "Delhi Technological University (DTU)",
+  "Netaji Subhas University of Technology (NSUT)",
+  "Manipal Institute of Technology (MIT Manipal)",
+  "International Institute of Information Technology Hyderabad (IIIT Hyderabad)",
+  "International Institute of Information Technology Bangalore (IIIT Bangalore)",
+  "Punjab Engineering College (PEC Chandigarh)",
+  "College of Engineering Pune (COEP)",
+  "National Institute of Engineering Mysore (NIE Mysore)",
+  "Thapar Institute of Engineering and Technology (TIET)",
+  "Amity University",
+  "Lovely Professional University (LPU)",
+  "Chandigarh University",
+  "KIIT University",
+  "Jadavpur University",
+  "Indian Institute of Science Bangalore (IISc Bangalore)",
+  // Management Institutes
+  "Indian Institute of Management Ahmedabad (IIM Ahmedabad)",
+  "Indian Institute of Management Bangalore (IIM Bangalore)",
+  "Indian Institute of Management Calcutta (IIM Calcutta)",
+  "Xavier School of Management (XLRI)",
+  "Symbiosis Institute of Business Management (SIBM)",
+];
+
 const jobTypes = [
   "Full-Time",
   "Part-Time",
@@ -43,6 +110,7 @@ interface JobPosting {
   location: string;
   workMode: string;
   branches: string[];
+  colleges: string[];
   cgpa: number;
   batch: number;
   salaryMin: string;
@@ -68,6 +136,7 @@ const existingJobs: JobPosting[] = [
     location: "Bangalore, Karnataka",
     workMode: "Hybrid",
     branches: ["Computer Science", "Information Technology"],
+    colleges: [],
     cgpa: 7.5,
     batch: 2025,
     salaryMin: "12",
@@ -91,6 +160,7 @@ const existingJobs: JobPosting[] = [
     location: "Mumbai, Maharashtra",
     workMode: "On-site",
     branches: ["Computer Science", "Electronics", "Electrical"],
+    colleges: [],
     cgpa: 7.0,
     batch: 2025,
     salaryMin: "8",
@@ -121,6 +191,8 @@ const CompanyJobCriteria = () => {
   const [location, setLocation] = useState("");
   const [workMode, setWorkMode] = useState("");
   const [selectedBranches, setSelectedBranches] = useState<string[]>([]);
+  const [selectedColleges, setSelectedColleges] = useState<string[]>([]);
+  const [collegeSearch, setCollegeSearch] = useState("");
   const [minCgpa, setMinCgpa] = useState("");
   const [batch, setBatch] = useState("");
   const [salaryMin, setSalaryMin] = useState("");
@@ -135,9 +207,31 @@ const CompanyJobCriteria = () => {
   const [interviewProcess, setInterviewProcess] = useState("");
   const [additionalInfo, setAdditionalInfo] = useState("");
 
+  // Filter colleges based on search
+  const filteredColleges = indianColleges.filter((college) =>
+    college.toLowerCase().includes(collegeSearch.toLowerCase())
+  );
+
+  // Choose all filtered colleges
+  const handleChooseAllColleges = () => {
+    const newSelections = [...new Set([...selectedColleges, ...filteredColleges])];
+    setSelectedColleges(newSelections);
+  };
+
+  // Remove all filtered colleges
+  const handleRemoveAllColleges = () => {
+    setSelectedColleges(selectedColleges.filter((college) => !filteredColleges.includes(college)));
+  };
+
   const handleBranchToggle = (branch: string) => {
     setSelectedBranches((prev) =>
       prev.includes(branch) ? prev.filter((b) => b !== branch) : [...prev, branch]
+    );
+  };
+
+  const handleCollegeToggle = (college: string) => {
+    setSelectedColleges((prev) =>
+      prev.includes(college) ? prev.filter((c) => c !== college) : [...prev, college]
     );
   };
 
@@ -158,6 +252,7 @@ const CompanyJobCriteria = () => {
       location,
       workMode: workMode || "On-site",
       branches: selectedBranches,
+      colleges: selectedColleges,
       cgpa: parseFloat(minCgpa),
       batch: parseInt(batch),
       salaryMin,
@@ -190,6 +285,8 @@ const CompanyJobCriteria = () => {
     setLocation("");
     setWorkMode("");
     setSelectedBranches([]);
+    setSelectedColleges([]);
+    setCollegeSearch("");
     setMinCgpa("");
     setBatch("");
     setSalaryMin("");
@@ -367,6 +464,78 @@ const CompanyJobCriteria = () => {
                       </div>
                     ))}
                   </div>
+                </div>
+                <div>
+                  <label className="text-sm font-medium text-foreground mb-3 block">
+                    Eligible Colleges
+                  </label>
+                  
+                  {/* Search Bar */}
+                  <div className="mb-3">
+                    <div className="relative">
+                      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
+                      <Input
+                        type="text"
+                        placeholder="Search colleges..."
+                        value={collegeSearch}
+                        onChange={(e) => setCollegeSearch(e.target.value)}
+                        className="pl-10"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Choose All / Remove All Buttons */}
+                  <div className="flex gap-2 mb-3">
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      onClick={handleChooseAllColleges}
+                      className="flex-1"
+                    >
+                      Choose All ({filteredColleges.length})
+                    </Button>
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      onClick={handleRemoveAllColleges}
+                      className="flex-1"
+                    >
+                      Remove All
+                    </Button>
+                  </div>
+
+                  {/* College List */}
+                  <div className="max-h-60 overflow-y-auto border border-border rounded-lg p-4 space-y-2">
+                    {filteredColleges.length > 0 ? (
+                      filteredColleges.map((college) => (
+                        <div key={college} className="flex items-center space-x-2">
+                          <Checkbox
+                            id={`college-${college}`}
+                            checked={selectedColleges.includes(college)}
+                            onCheckedChange={() => handleCollegeToggle(college)}
+                          />
+                          <label
+                            htmlFor={`college-${college}`}
+                            className="text-sm text-foreground cursor-pointer flex-1"
+                          >
+                            {college}
+                          </label>
+                        </div>
+                      ))
+                    ) : (
+                      <div className="text-sm text-muted-foreground text-center py-4">
+                        No colleges found matching your search
+                      </div>
+                    )}
+                  </div>
+                  
+                  {selectedColleges.length > 0 && (
+                    <div className="mt-2 text-sm text-muted-foreground">
+                      {selectedColleges.length} college(s) selected
+                    </div>
+                  )}
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>

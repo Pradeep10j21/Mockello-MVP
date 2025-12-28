@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Leaf, Menu, X } from "lucide-react";
+import { Leaf, Menu, X, Shield } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 const Header = () => {
@@ -9,19 +9,19 @@ const Header = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center shadow-soft group-hover:shadow-medium transition-all duration-300">
-              <Leaf className="w-6 h-6 text-primary-foreground" />
+            <div className="w-10 h-10 rounded-xl bg-transparent flex items-center justify-center shadow-soft group-hover:shadow-medium transition-all duration-300 overflow-hidden">
+              <img src="/logo.png" alt="Mockello Logo" className="w-full h-full object-contain" />
             </div>
-            <span className="font-display text-xl font-semibold text-foreground">​GenZ Placify    </span>
+            <span className="font-display text-xl font-semibold text-foreground">Mockello</span>
           </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
-            <a href="#about" className="text-muted-foreground hover:text-foreground transition-colors duration-300 font-medium">
-              About
-            </a>
             <Button variant="forest" size="sm" asChild>
-              <Link to="/college/login">Login</Link>
+              <Link to="/admin/login" className="flex items-center gap-2">
+                <Shield className="w-4 h-4" />
+                Super Admin
+              </Link>
             </Button>
           </nav>
 
@@ -33,11 +33,11 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {mobileMenuOpen && <nav className="md:hidden mt-4 pb-4 flex flex-col gap-4 animate-fade-up">
-            <a href="#about" className="text-muted-foreground hover:text-foreground transition-colors duration-300 font-medium">
-              About
-            </a>
             <Button variant="forest" size="sm" asChild>
-              <Link to="/college/login">Login</Link>
+              <Link to="/admin/login" className="flex items-center gap-2">
+                <Shield className="w-4 h-4" />
+                Super Admin
+              </Link>
             </Button>
           </nav>}
       </div>

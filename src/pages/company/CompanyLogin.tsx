@@ -73,10 +73,10 @@ const CompanyLogin = () => {
         
         <div className="relative z-10">
           <div className="flex items-center gap-3 mb-8 text-sidebar-foreground">
-            <div className="w-12 h-12 rounded-xl backdrop-blur-sm flex items-center justify-center bg-secondary-foreground">
-              <Leaf className="w-7 h-7 text-white" />
+            <div className="w-12 h-12 rounded-xl bg-transparent flex items-center justify-center overflow-hidden">
+              <img src="/logo.png" alt="Mockello Logo" className="w-full h-full object-contain" />
             </div>
-            <span className="font-display text-2xl font-bold text-primary-foreground">GenZ Placify</span>
+            <span className="font-display text-2xl font-bold text-primary-foreground">Mockello</span>
           </div>
           
           <h1 className="font-display text-4xl font-bold mb-4 text-primary-foreground">
@@ -114,10 +114,10 @@ const CompanyLogin = () => {
         <div className="w-full max-w-md">
           {/* Mobile Logo */}
           <div className="lg:hidden flex items-center justify-center gap-2 mb-8">
-            <div className="w-10 h-10 rounded-xl bg-forest-medium flex items-center justify-center">
-              <Leaf className="w-6 h-6 text-primary-foreground" />
+            <div className="w-10 h-10 rounded-xl bg-transparent flex items-center justify-center overflow-hidden">
+              <img src="/logo.png" alt="Mockello Logo" className="w-full h-full object-contain" />
             </div>
-            <span className="font-display text-xl font-bold text-foreground">GenZ Placify</span>
+            <span className="font-display text-xl font-bold text-foreground">Mockello</span>
           </div>
 
           {/* User Type Toggle */}

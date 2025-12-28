@@ -41,12 +41,12 @@ const AdminSidebar = ({ onLogout }: AdminSidebarProps) => {
       {/* Logo */}
       <div className="p-4 border-b border-bark/30">
         <Link to="/admin/dashboard" className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-gold flex items-center justify-center flex-shrink-0">
-            <Leaf className="w-6 h-6 text-bark" />
+          <div className="w-10 h-10 rounded-xl bg-transparent flex items-center justify-center flex-shrink-0 overflow-hidden">
+            <img src="/logo.png" alt="Mockello Logo" className="w-full h-full object-contain" />
           </div>
           {!collapsed && (
             <div>
-              <span className="font-display text-lg font-semibold block">GenZ Placify</span>
+              <span className="font-display text-lg font-semibold block">Mockello</span>
               <span className="text-xs text-primary-foreground/60">Super Admin</span>
             </div>
           )}
